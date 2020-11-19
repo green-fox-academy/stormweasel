@@ -1,0 +1,22 @@
+
+main {
+    background-color: seagreen;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e1/FalklandIslandFox2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+
+
+p {
+    color: blue;
+    font-family: 'Goldman','Courier New', Courier, monospace;
+}
+
+.first-paragraph { 
+    color: red;
+    line-height: 2;
+}
+
+#main-title {
+    font-size: 1.5rm;
+}
