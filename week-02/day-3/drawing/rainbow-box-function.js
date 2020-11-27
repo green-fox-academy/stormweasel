@@ -14,8 +14,8 @@ const ctx = canvas.getContext('2d');
 let rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink'];
 
 function Draw(size, color) {
-  ctx.strokeStyle = color;
-  ctx.strokeRect(300 - size / 2, 200 - size / 2, size, size);
+  ctx.fillStyle = color;
+  ctx.fillRect(300 - size / 2, 200 - size / 2, size, size);
 }
 
 let size = [];

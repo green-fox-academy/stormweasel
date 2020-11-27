@@ -22,7 +22,7 @@ for (let i = 0; i < coor.length; i = i + 2) {
   Square(coor[i], coor[i + 1]);
  }
 
-/*
+/* 3 more squares with another method with an object
 let coordinates = {
     first: [250, 250],
     second: [0, 0],

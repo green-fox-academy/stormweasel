@@ -21,8 +21,11 @@ let size = [25, 50, 100];
 size.forEach(function (i) {
   Draw(i);
 });
-  /*
+
+/* ugyanez for loop-pal
+  
 for (let i = 0; i < size.length; i++) {
 Draw(size[i]);
 }
+
 */

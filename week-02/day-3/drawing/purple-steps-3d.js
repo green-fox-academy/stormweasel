@@ -10,20 +10,15 @@ const ctx = canvas.getContext('2d');
 // [https://github.com/green-fox-academy/teaching-materials/blob/master/workshop/drawing/assets/r4.png]
 
 function Steps(x, y) {
-    ctx.fillStyle = 'purple';
-    ctx.fillRect(x, x, y, y)
-  };
-  
-  let x = [];
-  let y = [];
-  let sideX = 10;
-  let sideY = sideX
+  ctx.fillStyle = 'purple';
+  ctx.fillRect(x, x, y, y)
+};
 
-  for (let i = 0; i < 6; i++) {
-    Steps(sideX,sideY)
-    x.push(sideX);
-    sideX += 15;
-    y.push(sideY);
-    sideY += 15; //????????????????
-  }
- 
+let origo = 0;
+let side = 15;
+
+for (let i = 0; i < 6; i++) {
+  Steps(origo, side);
+  origo += side;
+  side = side * 1.5;
+}
