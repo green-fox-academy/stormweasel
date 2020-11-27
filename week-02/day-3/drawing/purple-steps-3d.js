@@ -14,7 +14,7 @@ function Steps(x, y) {
   ctx.fillRect(x, x, y, y)
 };
 
-let origo = 0;
+let origo = 15;
 let side = 15;
 
 for (let i = 0; i < 6; i++) {
