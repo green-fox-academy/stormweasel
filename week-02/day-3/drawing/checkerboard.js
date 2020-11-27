@@ -18,6 +18,14 @@ let board = [
 ]
 //y1-gyel x1-t kell bejárni
 //y2-vel  az x2-t kell bejárni
+
+/*
+[0, side * 2, side * 4, side * 6],  //x1
+  [side, side * 3, side * 5, side *7],//x2
+  [0, side * 2, side * 4],            //y1 
+  [side, side * 3, side * 5]         	//y2
+*/
+
 //páratlan sorok
 for (let i = 0; i < board[0].length; i++) {
 
