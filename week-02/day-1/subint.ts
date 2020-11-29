@@ -11,18 +11,23 @@ export { };
 // console.log(subint(9, [1, 11, 34, 52, 61]));
 // should print: '[]'
 
-function subint(x, array) {
-  
-  let list: number[] = [];
-  
-  for (x of array.toString()) {
-  
-    if (array.includes(x)) {
-      list.push(array.indexOf(x));
+function subInt(x, list) {
+  let numToString = x.toString();
+  let tempList: string[] = [];
+  let returnedList: number[] = [];
+
+  list.map(function (i: number) {       // makes a string array fom the original number arrray
+    let j: string = i.toString();
+    tempList.push(j);
+    return tempList;
+  });
+  for (let i = 0; i < tempList.length; i++) { 
+    if (tempList[i].includes(numToString)) {
+      returnedList.push(i);
     }
   }
-  console.log(list);
+  return (returnedList);
 }
 
-console.log(subint(1, [1, 11, 34, 52, 61]));
-console.log(subint(9, [1, 11, 34, 52, 61]));
+console.log(subInt(1, [1, 11, 34, 52, 61]));
+console.log(subInt(9, [1, 11, 34, 52, 61]));
