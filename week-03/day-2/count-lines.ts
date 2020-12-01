@@ -9,7 +9,7 @@ function lineCounter(filename: string) {
   const charEncode = 'utf-8';
   try {
     let fileContent = fs.readFileSync(filename, charEncode);
-    let lines: string[] = fileContent.split('\n')
+    let lines: string[] = fileContent.split('\n');
     console.log(lines.length);
   }
   catch (e) {
