@@ -6,13 +6,13 @@
 let oath: string = "I won't cheat on the exam!";
 
 for (let i: number = 1; i <= 100; i++) {
-    if (i < 10) {
-        console.log(i + '   ' + oath);
+  if (i < 10) {
+    console.log(i + '   ' + oath);
+  } else {
+    if (i == 100) {
+      console.log(i + ' ' + oath);
     } else {
-        if (i == 100) {
-            console.log(i + ' ' + oath);
-        } else {
-            console.log(i + '  ' + oath);
-        }
+      console.log(i + '  ' + oath);
     }
+  }
 }

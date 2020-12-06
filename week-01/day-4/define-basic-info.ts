@@ -1,5 +1,5 @@
 'use strict';
-export {} // Máté mondta, hogy ez kell, ha össze akadnak a változók a másik fájlokból 
+export { } // Máté mondta, hogy ez kell, ha össze akadnak a változók a másik fájlokból 
 // Define several things as a variable, then print their values
 // Your name as a string
 // Your age as a number

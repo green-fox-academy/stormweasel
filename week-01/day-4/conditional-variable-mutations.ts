@@ -1,5 +1,5 @@
 'use strict';
-export {};
+export { };
 
 let a: number = 24;
 let out: number = 0;
@@ -34,9 +34,9 @@ let isBonus: boolean = true;
 // and is_bonus is false decrement c by 1
 // if is_bonus is true c should remain the same
 
-if (credits > 50 && !isBonus) {c = c - 2;}
-if (credits < 50 && !isBonus) {c = c - 1;}
-if (isBonus) {c = c;}
+if (credits > 50 && !isBonus) { c = c - 2; }
+if (credits < 50 && !isBonus) { c = c - 1; }
+if (isBonus) { c = c; }
 
 console.log(c);
 
@@ -52,9 +52,8 @@ let out3: string = '';
 // otherwise set out3 to "Run Forest Run!"
 
 
-if(d % 4 == 0 && time <=200) {out3 = 'check'} else {
-    if(time > 200) { out3 = 'Time out'} else 
-    {out3 = 'Run Forest Run!'}
+if (d % 4 == 0 && time <= 200) { out3 = 'check' } else {
+    if (time > 200) { out3 = 'Time out' } else { out3 = 'Run Forest Run!' }
 }
 
 console.log(out3);

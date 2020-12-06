@@ -1,4 +1,5 @@
 'use strict';
+export { };
 let count: number = 1;
 
 for (let i: number = 0; i < 10; i++) {

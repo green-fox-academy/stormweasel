@@ -11,15 +11,12 @@
 //     510/52*17=0.57....
 // 6*5*17/52*17
 
-
-let averageCodeHours:number = 6;
-let workdaysPerWeek:number = 5;
+let averageCodeHours: number = 6;
+let workdaysPerWeek: number = 5;
 let semesterWeekCount: number = 17;
-let weeklyWorkhours:number = 52;
+let weeklyWorkhours: number = 52;
 
-let question1:number = averageCodeHours*workdaysPerWeek*semesterWeekCount;
-let question2:number = question1/(weeklyWorkhours*semesterWeekCount);
+let question1: number = averageCodeHours * workdaysPerWeek * semesterWeekCount;
+let question2: number = question1 / (weeklyWorkhours * semesterWeekCount);
 console.log(question1 + ' hours');
-console.log('approx. '+ Math.round(question2*100) + ' %' + ' (precisely: '+ question2*100 + ' %)');
-
-
+console.log('approx. ' + Math.round(question2 * 100) + ' %' + ' (precisely: ' + question2 * 100 + ' %)');

@@ -7,18 +7,18 @@ let heightInM: number = 1.78;
 // BMI-formula : (weight[kg]/height^2 [m])
 //My solution  for rounding to two decimals
 console.log(
-    Math.round(massInKg/Math.pow(heightInM, 2)*100) /100
-    );
+  Math.round(massInKg / Math.pow(heightInM, 2) * 100) / 100
+);
 
 //  I found these on net for rounding to 2 decimals
 
 //  .toPrecision() 
 console.log(
-    (massInKg/Math.pow(heightInM, 2)).toPrecision(4)
-    );
+  (massInKg / Math.pow(heightInM, 2)).toPrecision(4)
+);
 
 /*
 Math.round() - - > elvileg kiküszöböli a kerekítési hibákat, ami a többinél előfordul
-    function roundToTwo(num) {    
+    function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
 */
