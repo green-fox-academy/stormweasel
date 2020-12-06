@@ -11,7 +11,19 @@ let lineCount: number = 4;
 //
 // The triangle should have as many lines as lineCount is
 
+// my first solution
 for (let i: number = 0; i <= lineCount; i++) {
-    let star: any = "*";
-    console.log(star.repeat(i));
+  let star: string = '*';
+  console.log(star.repeat(i));
+}
+
+console.log();
+console.log();
+
+// without .repeat()
+let bStar: string = '*';
+for (let i: number = 0; i < lineCount; i++) {
+  let loneStar: string = '*';
+  console.log(bStar);
+  bStar = bStar + loneStar;
 }
