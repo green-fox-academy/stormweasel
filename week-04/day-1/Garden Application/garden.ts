@@ -1,6 +1,5 @@
 'use strict';
-import { Plant, Flower, Tree } from './plants';
-import { yellowFlower, blueFlower, purpleTree, orangeTree } from './plants';
+import { Plant } from './plants';
 
 export class Garden {
 	protected _listOfPlants: Plant[];
@@ -27,7 +26,7 @@ export class Garden {
 		let dryPlants: number = 0;
 		for (let i: number = 0; i < this._listOfPlants.length; i++) {
 			if (Object.values(this._listOfPlants[i])[1] < Object.values(this._listOfPlants[i])[2]) {
-				dryPlants += 1
+				dryPlants += 1;
 			}
 		}
 		for (let i: number = 0; i < this._listOfPlants.length; i++) {
@@ -39,22 +38,3 @@ export class Garden {
 		return this._waterTank -= waterAmount;
 	}
 }
-
-let garden = new Garden();
-garden.addPlants(yellowFlower);
-garden.addPlants(blueFlower);
-garden.addPlants(purpleTree);
-garden.addPlants(orangeTree);
-
-garden.viewPlants();
-console.log();
-console.log(garden);	//for checking the water level
-console.log();
-garden.water(40);
-console.log();
-console.log(garden); //for checking the water level
-console.log();
-garden.water(70);
-console.log();
-console.log(garden); //for checking the water level
-console.log();
