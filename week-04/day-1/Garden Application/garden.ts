@@ -26,12 +26,12 @@ export class Garden {
 		console.log(`Watering with ${waterAmount}`);
 		let dryPlants: number = 0;
 		for (let i: number = 0; i < this._listOfPlants.length; i++) {
-			if (Object.values(this._listOfPlants[i])[2] === true) {
+			if (Object.values(this._listOfPlants[i])[3] === true) {
 				dryPlants += 1
 			}
 		}
 		for (let i: number = 0; i < this._listOfPlants.length; i++) {
-			if (Object.values(this._listOfPlants[i])[2] === true) {
+			if (Object.values(this._listOfPlants[i])[3] === true) {
 				this._listOfPlants[i].setWaterlevel(waterAmount/dryPlants);
 			}
 		}
@@ -48,13 +48,13 @@ garden.addPlants(orangeTree);
 
 garden.viewPlants();
 console.log();
-// console.log(garden);	//for checking the water level
-// console.log();
+console.log(garden);	//for checking the water level
+console.log();
 garden.water(40);
 console.log();
-// console.log(garden); //for checking the water level
-// console.log();
+console.log(garden); //for checking the water level
+console.log();
 garden.water(70);
 console.log();
-// console.log(garden); //for checking the water level
-// console.log();
+console.log(garden); //for checking the water level
+console.log();

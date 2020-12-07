@@ -3,10 +3,12 @@ export class Plant {
 	protected _color: string;
 	protected _waterLevel: number;
 	protected _needsWater: boolean;
-	
-	constructor(color: string, waterLevel?: number) {
+	public _droughtLimit: number;
+
+	constructor(color: string, waterLevel?: number, droughtLimit?: number) {
 		this._color = color;
 		this._waterLevel = waterLevel ?? 40;
+		this._droughtLimit = droughtLimit ?? 8;
 	}
 
 	public getWaterlevel(): number {
@@ -18,7 +20,13 @@ export class Plant {
 	}
 
 	public checkWaterNeed(): boolean {
-	return;
+		if (this._waterLevel < this._droughtLimit) {
+			console.log(`The ${this._color} Flower needs water.`);
+			return this._needsWater = true;
+		} else {
+			console.log(`The ${this._color} Flower doesn't need water.`);
+			return this._needsWater = false;
+		}
 	}
 }
 //****************************************** */
@@ -30,16 +38,7 @@ export class Flower extends Plant {
 		super(color, waterLevel);
 		this._color = color;
 		this._waterLevel = waterLevel ?? 4;
-	}
-
-	public checkWaterNeed(): boolean {
-		if (this._waterLevel < 5) {
-			console.log(`The ${this._color} Flower needs water.`);
-			return this._needsWater = true;
-		} else {
-			console.log(`The ${this._color} Flower doesn't need water.`);
-			return this._needsWater = false;
-		}
+		this._droughtLimit = 5;
 	}
 
 	public setWaterlevel(waterAmount: number): number {
@@ -61,16 +60,9 @@ export class Tree extends Plant {
 		super(color, waterLevel);
 		this._color = color;
 		this._waterLevel = waterLevel ?? 4;
+		this._droughtLimit = 10;
 	}
-	public checkWaterNeed(): boolean {
-		if (this._waterLevel < 10) {
-			console.log(`The ${this._color} Tree needs water.`);
-			return this._needsWater = true;
-		} else {
-			console.log(`The ${this._color} Tree doesn't need water.`);
-			return this._needsWater = false;
-		}
-	}
+
 	public setWaterlevel(waterAmount: number): number {
 		return this._waterLevel += waterAmount * 0.4;
 	}
