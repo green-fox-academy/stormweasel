@@ -2,8 +2,7 @@
 export class Plant {
 	protected _color: string;
 	protected _waterLevel: number;
-	protected _needsWater: boolean;
-	public _droughtLimit: number;
+	protected _droughtLimit: number;
 
 	constructor(color: string, waterLevel?: number, droughtLimit?: number) {
 		this._color = color;
@@ -19,13 +18,11 @@ export class Plant {
 		return this._waterLevel += waterAmount;
 	}
 
-	public checkWaterNeed(): boolean {
+	public checkWaterNeed(): void {
 		if (this._waterLevel < this._droughtLimit) {
 			console.log(`The ${this._color} Flower needs water.`);
-			return this._needsWater = true;
 		} else {
 			console.log(`The ${this._color} Flower doesn't need water.`);
-			return this._needsWater = false;
 		}
 	}
 }
