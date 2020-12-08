@@ -1,5 +1,6 @@
 'use strict';
 export class Plant {
+	protected _name:string;
 	protected _color: string;
 	protected _waterLevel: number;
 	protected _droughtLimit: number;
@@ -20,9 +21,9 @@ export class Plant {
 
 	public checkWaterNeed(): void {
 		if (this._waterLevel < this._droughtLimit) {
-			console.log(`The ${this._color} Flower needs water.`);
+			console.log(`The ${this._color} ${this._name} needs water.`);
 		} else {
-			console.log(`The ${this._color} Flower doesn't need water.`);
+			console.log(`The ${this._color} ${this._name} doesn't need water.`);
 		}
 	}
 }
@@ -30,6 +31,7 @@ export class Plant {
 
 export class Flower extends Plant {
 	protected _color: string = 'yellow' || 'blue';
+	protected _name: string = 'Flower';
 
 	constructor(color: string, waterLevel?: number) {
 		super(color, waterLevel);
@@ -52,6 +54,7 @@ export let yellowFlower = new Flower('yellow');
 export class Tree extends Plant {
 	protected _color: string = 'purple' || 'orange';
 	protected _waterLevel: number;
+	protected _name: string = 'Tree';
 
 	constructor(color: string, waterLevel?: number) {
 		super(color, waterLevel);
