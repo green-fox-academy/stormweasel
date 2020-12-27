@@ -27,8 +27,6 @@ const ingredients: any[] = [
 ];
 
 function printTable(list: any[]): void {
-	//	console.table(ingredients);
-
 	console.log('+--------------------+---------------+----------+');
 	console.log(`| Ingredient         | Needs cooling | In stock |`);
 	console.log('+--------------------+---------------+----------+');
@@ -60,7 +58,7 @@ printTable(ingredients);
 function printTable2(list: any[]): void {
 	//find the longest name
 	let names: string[] = [];
-	list.map(object => { names.push(object.name); });
+	list.map(object => names.push(object.name));
 	let count: number = 0;
 	names.map(elem => {
 		if (elem.length > count) { count = elem.length; }
