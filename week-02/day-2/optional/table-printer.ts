@@ -32,27 +32,26 @@ function printTable(list: any[]): void {
 	console.log('+--------------------+---------------+----------+');
 	console.log(`|Ingredient          | Needs cooling | In stock |`);
 	console.log('+--------------------+---------------+----------+');
-	let blank:string = ' ';
+	let blank: string = ' ';
 	list.map(object => {
-		let blank1: string= '';
-		let blank2: string= '';
-		let blank3: string= '';
-		for (let i:number = 1; i < (20-object.name.length); i++){
+		let blank1: string = '';
+		let fill1: string = '-';
+		let blank2: string = '           ';
+		let fill2: string = '---------------';
+		let blank3: string = '        ';
+		let fill3: string = '----------';
+		for (let i: number = 1; i < (20 - object.name.length); i++) {
 			blank1 += blank;
 		}
-		// for (let i:number = 1; i < (20-object.name.length); i++){
-		// 	blank2 += blank;
-		// }
-		for (let i:number = 1; i < 9; i++){
-			blank3 += blank;
-		}
 		if (object.needsCooling) {
-			object.needsCooling = 'yes           ';
+			object.needsCooling = 'yes';
 		} else {
-			object.needsCooling = 'no            ';
+			object.needsCooling = 'no ';
 		}
-		if (object.inStock === 0) {object.inStock = '-';}
-		console.log(`| ${object.name}${blank1}| ${object.needsCooling}| ${object.inStock}${blank3}|`);
+		if (object.inStock === 0) {
+			object.inStock = '-';
+		}
+		console.log(`| ${object.name}${blank1}| ${object.needsCooling}${blank2}| ${object.inStock}${blank3}|`);
 	});
 	console.log('+--------------------+---------------+----------+');
 }
