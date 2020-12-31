@@ -4,6 +4,8 @@ import { Pirate } from './pirate';
 //console.log('Creating Pirates:');
 let roberts = new Pirate('Bartholomew Roberts');
 let sailor = new Pirate();
+console.log(roberts);
+
 
 // console.log('\nDrinking test:');
 // for (let i: number = 0; i < 5; i++) { 
@@ -12,16 +14,20 @@ let sailor = new Pirate();
 // 	roberts.howsItGoingMate()
 // }
 
+console.log('\nPass out test:');
+roberts.wakeUp();
+for (let i: number = 0; i < 6; i++) { roberts.drinkSomeRum(); }
+console.log(roberts.isPassedout(), roberts.getBoozeLevel());
 
-// console.log('\nPass out test:');
-// for (let i: number = 0; i < 6; i++) { roberts.drinkSomeRum(); }
+roberts.wakeUp();
+console.log(roberts.isPassedout(), roberts.getBoozeLevel());
 
 
-console.log('\nParrot test');
-console.log('add');
-roberts.addParrot();
-roberts.addParrot('Leila');
-console.log(roberts);
+// console.log('\nParrot test');
+// console.log('add');
+// roberts.addParrot();
+// roberts.addParrot('Leila');
+// console.log(roberts);
 // console.log('\nfeed');
 // roberts.feedParrot()
 // console.log('\ngiveRumToParrot');
@@ -36,6 +42,7 @@ console.log(roberts);
 
 // console.log('\nBrawl test');
 // roberts.brawl(sailor);
+
 
 // console.log('\nDeath test');
 // roberts.drinkSomeRum();

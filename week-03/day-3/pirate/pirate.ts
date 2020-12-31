@@ -1,37 +1,20 @@
 'use strict';
-// Create a Pirate class. While you can add other fields and methods, 
-// you must have these methods:
-
-// drinkSomeRum() - intoxicates the Pirate some
-
-// howsItGoingMate() - when called, the Pirate replies, if drinkSomeRun was called:-
-// 0 to 4 times, "Pour me anudder!"
-// else, "Arghh, I'ma Pirate. How d'ya d'ink its goin?", the pirate passes out and 
-// sleeps it off.
-
-// If you manage to get this far, then you can try to do the following.
-
-// die() - this kills off the pirate, in which case, DrinkSomeRum, etc. 
-// just result in he's dead.
-
-// brawl(x) - where pirate fights another pirate (if that other pirate is alive) 
-// and there's a 1/3 chance, 1 dies, the other dies or they both pass out.
-
-// And... if you get that far...
-// Add a parrot.
 import { Parrot } from './parrot';
-import {getRandomInteger} from './random';
+import { getRandomInteger } from './random';
 
 export class Pirate {
 	protected _name: string;
 	protected _intoxicationLevel: number;
 	protected _passOutLimit: number;
-	protected _isAlive: boolean = true;
+	protected _isAlive: boolean;
+	protected _passedOut: boolean;
 	protected _hasParrot: boolean;
 	protected _aParrot: Parrot;
 
 	constructor(name?: string, level?: number, limit?: number) {
 		this._name = name ?? 'A. Teesdale';
+		this._isAlive = true;
+		this._passedOut = false;
 		this._intoxicationLevel = 0 ?? level;
 		this._passOutLimit = 6 ?? limit;
 		this._hasParrot = false;
@@ -54,28 +37,50 @@ export class Pirate {
 		return this._isAlive;
 	}
 
-	public getParrot(): Parrot {
-		return this._aParrot;
+	public isPassedout(): boolean {
+		return this._passedOut;
 	}
+
 	// *********************************************************************
 	// setters
 	public setBoozeLevel(level: number): void {
 		this._intoxicationLevel = level;
 	}
+	public setName(name: string) {
+		this._name = name;
+	}
+
+	public wakeUp(): void {
+		if (!this._isAlive) {
+			console.log(`He's dead.`);
+			return;
+		}
+		if (this._passedOut) {
+			this._passedOut = false;
+			this.setBoozeLevel(0);
+		} else {
+			console.log(`Hey, I'm awake! Just resting my eyes...`);
+		}
+	}
 
 	public die() {
+		if (!this._isAlive) {
+			console.log(`He's already  dead.`);
+			return;
+		}
 		this._isAlive = false;
+		this._passedOut = true;
 		console.log(`${this._name} dies in the fight.`);
 	}
 
 	// **********************************************************************
 	// methods for getting wasted
-	public drinkSomeRum(): void {
+	public drinkSomeRum(trigger?: number): void {
 		if (!this._isAlive) {
 			console.log(`He's dead.`);
 			return;
 		}
-		console.log('gluggy-gluggy');
+		if (trigger === undefined){console.log('gluggy-gluggy');}
 		this._intoxicationLevel++;
 		if (this._intoxicationLevel === this._passOutLimit) { this.passOut(); }
 	}
@@ -95,8 +100,8 @@ export class Pirate {
 
 	private passOut(): void {
 		console.log(`ZZZZZZZZZ`);
+		this._passedOut = true;
 		console.log(`${this._name} is passed out, until gets sober.\n`);
-		this.setBoozeLevel(0);
 	}
 	// ************************************************************************
 	// Fight methods:
@@ -140,38 +145,54 @@ export class Pirate {
 	// **************************************************************************
 	// Parrot methods:	
 	public addParrot(name?: string): void {
+		if (!this._isAlive) {
+			console.log(`Dead men need no parrot.`);
+			return;
+		}
 		this._hasParrot = true;
 		if (this._hasParrot) { this._aParrot = new Parrot(name) };
 	}
 	public feedParrot(): void {
+		if (!this._hasParrot) {
+			console.log(`First you need a parrot.`);
+			return;
+		}
 		console.log(`Yum-yum, ${this._aParrot.getName()} wants more cracker!\n`);
 	}
 	public talkToParrot(): void {
+		if (!this._hasParrot) {
+			console.log(`First you need a parrot.`);
+			return;
+		}
 		let chance: number = getRandomInteger(1, 3);
 		if (chance == 1) { console.log(`More crackers, you land-lubber piece of scum!\n`); }
 		if (chance == 2) {
 			console.log(`Any body, submerged in a fluid, experiences an apparent loss` +
-			`in weight that is equal to the weight of the fluid displaced by it.\n`);
+				`in weight that is equal to the weight of the fluid displaced by it.\n`);
 		}
 		if (chance == 3) { console.log(`The captain is a woman.The beard shouldn't deceive you.\n`); }
 	}
 
 	public giveRumtoParrot(): void {
+		if (!this._hasParrot) {
+			console.log(`First you need a parrot.`);
+			return;
+		}
 		let level: number = this._aParrot.getLevel();
 		this._aParrot.setLevel(level + 1);
 
 		let chance: number = getRandomInteger(1, 3);
 		if (chance == 1) {
 			console.log(
-				`Leave her, Johnny, leave her!\n`+
-				`Oh, leave her, Johnny, leave her!\n`+
-				`For the voyage is long and the winds don't blow\n`+
+				`Leave her, Johnny, leave her!\n` +
+				`Oh, leave her, Johnny, leave her!\n` +
+				`For the voyage is long and the winds don't blow\n` +
 				`And it's time for us to leave her.\n`);
 		}
 		if (chance == 2) {
 			console.log(
-				`Under Jolly Roger...\nFly our flag, we teach them fear\n`+
-				`Capture them, the end is near\nFiring guns they shall burn\n`+
+				`Under Jolly Roger...\nFly our flag, we teach them fear\n` +
+				`Capture them, the end is near\nFiring guns they shall burn\n` +
 				`Surrender or fight there's no return\nUnder Jolly Roger...\n`);
 		}
 		if (chance == 3) {
