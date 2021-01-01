@@ -63,14 +63,14 @@ export class Pirate {
 		}
 	}
 
-	public die() {
+	public die(trigger?: number) {
 		if (!this._isAlive) {
 			console.log(`He's already  dead.`);
 			return;
 		}
 		this._isAlive = false;
 		this._passedOut = true;
-		console.log(`${this._name} dies in the fight.`);
+		if (trigger === 1) {console.log(`${this._name} dies in the fight.`);}
 	}
 
 	// **********************************************************************
@@ -98,10 +98,12 @@ export class Pirate {
 		}
 	}
 
-	private passOut(): void {
+	private passOut(trigger?:number): void {
+		if (trigger === 1) {
 		console.log(`ZZZZZZZZZ`);
-		this._passedOut = true;
 		console.log(`${this._name} is passed out, until gets sober.\n`);
+		}
+		this._passedOut = true;
 	}
 	// ************************************************************************
 	// Fight methods:
@@ -121,10 +123,10 @@ export class Pirate {
 
 		if (chance === 1) {
 			console.log(`${enemy.getName()} has won.`);
-			this.die();
+			this.die(1);
 		} else if (chance === 2) {
 			console.log(`${this.getName()} has won.`);
-			enemy.die();
+			enemy.die(1);
 		} else if (chance == 3 || chance == 4 || chance == 5) {
 			console.log(`${enemy.getName()} has won.`);
 			this.passOut();
@@ -137,8 +139,8 @@ export class Pirate {
 			enemy.passOut();
 		} else if (chance == 10) {
 			console.log(`They both drop dead.`);
-			this.die();
-			enemy.die();
+			this.die(1);
+			enemy.die(1);
 		}
 	}
 
