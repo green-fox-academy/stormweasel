@@ -1,5 +1,5 @@
 'use strict';
-import { Pirate } from './pirate';
+import { Pirate } from '../pirate';
 
 //console.log('Creating Pirates:');
 let roberts = new Pirate('Bartholomew Roberts');

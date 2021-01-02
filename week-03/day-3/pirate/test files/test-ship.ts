@@ -1,5 +1,5 @@
 'use strict';
-import {Ship} from './ship';
+import {Ship} from '../ship';
 
 console.log(`Creating ship:\n`);
 let hind = new Ship('Golden Hind');

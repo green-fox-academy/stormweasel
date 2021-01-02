@@ -1,5 +1,5 @@
 'use strict';
-import {Armada} from './armada';
+import {Armada} from '../armada';
 
 let drake = new Armada('Black Fleet');
 let spaniard = new Armada();
