@@ -1,6 +1,6 @@
 'use strict';
 
-import {Armada} from './armada';
+import { Armada } from './armada';
 
 class WarApp {
 	protected _armada1: Armada;
@@ -11,9 +11,9 @@ class WarApp {
 		this._armada2 = new Armada(name2) ?? new Armada('Red Fleet');
 	}
 
-	public run(): void {
-		this._armada1.fillArmada(3);
-		this._armada2.fillArmada(3);
+	public run(numberOfShips1: number, numberOfShips2: number): void {
+		this._armada1.fillArmada(numberOfShips1);
+		this._armada2.fillArmada(numberOfShips2);
 
 		console.log(`Status of the armadas:\n`);
 		this._armada1.getArmadaStatus(2);
@@ -24,4 +24,4 @@ class WarApp {
 }
 
 let war = new WarApp(/*'Black Fleet', 'Red Fleet'*/);
-war.run();
+war.run(3,3);

@@ -1,12 +1,14 @@
 'use strict';
 import { Ship } from './ship';
+import { giveArmadaName } from './name-functions';
+
 
 export class Armada {
 	public _name: string;
 	protected _listOfShips: Ship[];
 
 	constructor(name?: string) {
-		this._name = name ?? 'Pirate Armada';
+		this._name = name ?? giveArmadaName();
 		this._listOfShips = [];
 	}
 
@@ -35,7 +37,7 @@ export class Armada {
 	public fillArmada(numberOfShips: number) {
 		for (let i: number = 1; i <= numberOfShips; i++) {
 			let ship = new Ship();
-			ship._name += ` ${i}. of ${this._name}`;
+			ship._name = `${ship._name} of ${this._name}`;
 			ship.fillShip();
 			this._listOfShips.push(ship);
 		}

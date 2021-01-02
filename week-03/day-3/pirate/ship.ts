@@ -2,6 +2,7 @@
 
 import { Pirate } from "./pirate";
 import { countPercentPossibility, getRandomInteger } from './random';
+import { giveCaptainName, giveShipName } from './name-functions';
 
 export class Ship {
 	public _name: string;
@@ -11,7 +12,7 @@ export class Ship {
 	protected _canFight: boolean;
 
 	constructor(name?: string) {
-		this._name = name ?? "Pirate Ship";
+		this._name = name ?? giveShipName();
 		this._captain = null;
 		this._numberOfCrew = 0;
 		this._crew = []
@@ -20,7 +21,7 @@ export class Ship {
 	}
 
 	public fillShip(): void {
-		let captain: Pirate = new Pirate();
+		let captain: Pirate = new Pirate(giveCaptainName());
 		captain.setName('Captain ' + captain.getName());
 		this._captain = captain;
 		let numberOfCrew: number = getRandomInteger(6, 12)
@@ -68,7 +69,7 @@ export class Ship {
 			this._crew.forEach(pirate => pirate.drinkSomeRum(1));
 		}
 		if (this.getAwaken() <= 4) {
-			console.log(`Too much crew-member is out cold, the ${this._name} is disabled.`);
+			console.log(`Too many crew-member is out cold, the ${this._name} is disabled.`);
 			this._canFight = false;
 		}
 	}

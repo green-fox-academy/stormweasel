@@ -1,6 +1,9 @@
 'use strict';
 import { Parrot } from './parrot';
 import { getRandomInteger } from './random';
+import { givePirateName } from './name-functions';
+const fs = require('fs');
+
 
 export class Pirate {
 	protected _name: string;
@@ -12,7 +15,7 @@ export class Pirate {
 	protected _aParrot: Parrot;
 
 	constructor(name?: string, level?: number, limit?: number) {
-		this._name = name ?? 'A. Teesdale';
+		this._name = name ?? givePirateName();
 		this._isAlive = true;
 		this._passedOut = false;
 		this._intoxicationLevel = 0 ?? level;
@@ -39,6 +42,10 @@ export class Pirate {
 
 	public isPassedout(): boolean {
 		return this._passedOut;
+	}
+
+	public getParrot(): Parrot {
+		return this._aParrot;
 	}
 
 	// *********************************************************************
@@ -70,7 +77,7 @@ export class Pirate {
 		}
 		this._isAlive = false;
 		this._passedOut = true;
-		if (trigger === 1) {console.log(`${this._name} dies in the fight.`);}
+		if (trigger === 1) { console.log(`${this._name} dies in the fight.`); }
 	}
 
 	// **********************************************************************
@@ -80,7 +87,7 @@ export class Pirate {
 			console.log(`He's dead.`);
 			return;
 		}
-		if (trigger === undefined){console.log('gluggy-gluggy');}
+		if (trigger === undefined) { console.log('gluggy-gluggy'); }
 		this._intoxicationLevel++;
 		if (this._intoxicationLevel === this._passOutLimit) { this.passOut(); }
 	}
@@ -98,10 +105,10 @@ export class Pirate {
 		}
 	}
 
-	private passOut(trigger?:number): void {
+	private passOut(trigger?: number): void {
 		if (trigger === 1) {
-		console.log(`ZZZZZZZZZ`);
-		console.log(`${this._name} is passed out, until gets sober.\n`);
+			console.log(`ZZZZZZZZZ`);
+			console.log(`${this._name} is passed out, until gets sober.\n`);
 		}
 		this._passedOut = true;
 	}
@@ -166,13 +173,21 @@ export class Pirate {
 			console.log(`First you need a parrot.`);
 			return;
 		}
-		let chance: number = getRandomInteger(1, 3);
-		if (chance == 1) { console.log(`More crackers, you land-lubber piece of scum!\n`); }
-		if (chance == 2) {
-			console.log(`Any body, submerged in a fluid, experiences an apparent loss` +
-				`in weight that is equal to the weight of the fluid displaced by it.\n`);
+
+		let fileContent: string = '';
+		try {
+			fileContent = fs.readFileSync('./txts/parrottalks.txt', 'utf-8')
 		}
-		if (chance == 3) { console.log(`The captain is a woman.The beard shouldn't deceive you.\n`); }
+		catch (error) {
+			console.log(`Read error: can't read parrottalks.txt`);
+			return;
+		};
+
+		let talks: string[] = fileContent.split('\n');
+		let chance: number = getRandomInteger(1, 3);
+		if (chance == 1) { console.log(talks[0]); }
+		if (chance == 2) { console.log(talks[1]); }
+		if (chance == 3) { console.log(talks[2]); }
 	}
 
 	public giveRumtoParrot(): void {
@@ -183,23 +198,21 @@ export class Pirate {
 		let level: number = this._aParrot.getLevel();
 		this._aParrot.setLevel(level + 1);
 
+		let fileContent: string = '';
+		try {
+			fileContent = fs.readFileSync('./txts/parrotsongs.txt', 'utf-8')
+		}
+		catch (error) {
+			console.log(`Read error: can't read parrotsongs.txt`);
+			return;
+		};
+
+		let songs: string[] = fileContent.split('¤');
+		console.log(`${this._aParrot.getName()} starts singing on a drunken voice:\n`);
 		let chance: number = getRandomInteger(1, 3);
-		if (chance == 1) {
-			console.log(
-				`Leave her, Johnny, leave her!\n` +
-				`Oh, leave her, Johnny, leave her!\n` +
-				`For the voyage is long and the winds don't blow\n` +
-				`And it's time for us to leave her.\n`);
-		}
-		if (chance == 2) {
-			console.log(
-				`Under Jolly Roger...\nFly our flag, we teach them fear\n` +
-				`Capture them, the end is near\nFiring guns they shall burn\n` +
-				`Surrender or fight there's no return\nUnder Jolly Roger...\n`);
-		}
-		if (chance == 3) {
-			console.log(`Like a virrrrgin touched forrr thhe verry firrrst taimme...\n`);
-		}
+		if (chance == 1) { console.log(songs[0]); }
+		if (chance == 2) { console.log(songs[1]); }
+		if (chance == 3) { console.log(songs[2]); }
 
 		if (this._aParrot.getLevel() === this._aParrot.getLimit()) {
 			this._aParrot.passOut();
