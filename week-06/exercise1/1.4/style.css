@@ -1,0 +1,42 @@
+
+/*The container should have a fixed width
+The items should fill all available horizontal space
+The yellow item should be twice as tall as the side items*/
+/* rectangle-width:380px; height:126 margin:55px left: 50px, altogether: 485*614 */
+.container {
+  width: 485px;
+  height: 614px;
+ /* align-items: center;
+  justify-content: space-around;*/
+  /* background-color: white; */
+  }
+
+.item {
+  width: 380px;
+  height: 126px;
+  margin-left: 55px;
+  margin-right: 50px;
+  /*align-self: flex-end;*/
+}
+
+.green {
+  position: relative;
+  top: 55px;
+  margin-top: 55px;
+  background-color:rgb(81, 212, 0);
+}
+
+.yellow {
+  position: relative;
+  top: 181px;
+  height: 252px;
+  margin-bottom: 55px;
+  background-color:rgb(255, 214, 42);
+}
+
+.purple {
+  position: relative;
+  top: -252px;
+  
+  background-color: rgb(176, 42, 255);
+}

@@ -1,0 +1,36 @@
+
+/*The items should fill all available horizontal space
+The yellow item should be twice as big as the side items*/
+/* square-sides:190px; margin: 55px left: 45px, altogether:860*300 */
+.container {
+  width: 860px;
+  height: 300px;
+ /* align-items: center;
+  justify-content: space-around;*/
+  /* background-color: white; */
+  }
+
+.item {
+  width: 190px;
+  height: 190px;
+  margin-top: 55px;
+  margin-bottom: 55px;
+  /*align-self: flex-end;*/
+}
+.green {
+  float: left;
+  margin-left: 55px;
+  background-color:rgb(81, 212, 0);
+}
+
+.yellow {
+  width: 380px;
+  float: left;
+  background-color:rgb(255, 214, 42);
+}
+
+.purple {
+  float: left;
+  margin-right: 45px;
+  background-color:  rgb(176, 42, 255);
+}
