@@ -1,0 +1,42 @@
+/* Reproduce the following 3 layouts with the same HTML structure
+The purple items should have fixed size
+The yellow area should fill all available horizontal space
+The yellow area should have a fixed height 
+
+purple square: 108*108; 
+yellow rectangle: height:282, width: 754 
+*/
+
+ul {
+	position:fixed;
+	width:754px;
+	height: 282px;
+	background-color: rgb(255, 214, 42);
+	display: block;
+}
+
+
+
+li {
+	position: relative;
+	top:87px;
+	right: 40px;
+	width: 108px;
+	height: 108px;
+	/* margin: 0px 0px 0px 108px;	 */
+	color: rgb(255, 214, 42);
+	background-color: rgb(176, 42, 255);
+	display: inline-block;
+}
+
+li:first-child {
+	margin: 0px 0px 0px 0px;	
+}
+
+li:last-child {
+	float:right;
+	/* position: absolute; */
+	bottom:187px;
+	left: 340 px;
+	/* margin: 0px 0px 0px -108px;	 */
+}

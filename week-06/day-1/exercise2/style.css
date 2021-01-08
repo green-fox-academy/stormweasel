@@ -1,0 +1,33 @@
+/*The items should have fixed sizes
+The purple item should be centered in the yellow area
+purple square: 108*108; 
+yellow rectangle: height:282 (t:87 b:87), width: 754 (323,323)
+*/
+
+/* for the flex-box solution switch the lines in and comment position lines out*/
+
+.container {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-around; */
+  position: relative;
+  left: 55px;
+  width: 754px;
+  height: 282px;
+  background-color: rgb(255, 214, 42);
+  
+}
+
+.item {
+  /* margin:87px; */
+  width: 108px;
+  height: 108px;
+  position: relative;
+  top: 87px;
+  left: 323px;
+  /* align-self: flex-end; */
+}
+
+.purple {
+  background-color:  rgb(180, 20, 224); 
+  }
