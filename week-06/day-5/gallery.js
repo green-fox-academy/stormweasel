@@ -12,20 +12,51 @@ let gallery = [
 	['./images/hateful 8.poster.jpg', 'poster-hateful-8'],
 	['./images/Once upon a time in Hollywood.poster2.jpg', 'poster-once-upon-hollywood'],
 ]
-
+// Elements picked:
 let picture = document.querySelector('#picture img');
-console.log(picture);
 let leftArrow = document.querySelector('.left');
-console.log(leftArrow);
 let rightArrow = document.querySelector('.right');
-console.log(rightArrow);
+let thumbnails = document.querySelector('.thumbnails');
+for (let i = 0; i < 8/*gallery.length*/; i++) {
+	if (i === 0) {
+		let leftArrow = document.createElement('button');
+		leftArrow.setAttribute('class', 'left');
+		thumbnails.appendChild(leftArrow);
+	}
+
+	let thumb = document.createElement('button');
+	thumb.setAttribute(`class`, `thumb${i}`);
+	thumb.innerText = i + 1;
+	// // Picture as background:
+	// thumb.setAttribute(`style`,`background-image: url(${gallery[i]}); background-size: 100%;` );
+
+	// //Picture as an image element:
+	// let thumbImage = document.createElement('img');
+	// thumbImage.setAttribute('class', 'thumbImage');
+	// thumbnails.appendChild(thumb);
+	// thumb.appendChild(thumbImage);
+	// imageLoader(thumbImage, i);
+
+	//  thumb.innerHTML=`<img class="thumbImage ${i}" src=${gallery[i] [0]} alt=${gallery[i] [1]}>`;
+
+	// thumb.innerHTML = imageLoader(thumb, i);
+	thumbnails.appendChild(thumb);
+
+	if (i === 7 /*gallery.length-1*/) {
+		let rightArrow = document.createElement('button');
+		rightArrow.setAttribute('class', 'right');
+		thumbnails.appendChild(rightArrow);
+	}
+}
+// variables:
 let picIndex = 0;
 
-function pictureLoader (picIndex) {
-let url = gallery[picIndex][0];
-let alt = gallery[picIndex][1];
-picture.setAttribute('src', url);
-picture.setAttribute('alt', alt);
+// Functions:
+function imageLoader(element, picIndex) {
+	let url = gallery[picIndex][0];
+	let alt = gallery[picIndex][1];
+	element.setAttribute('src', url);
+	element.setAttribute('alt', alt);
 }
 
 leftArrow.onclick = () => {
@@ -35,16 +66,24 @@ leftArrow.onclick = () => {
 		picIndex--;
 	}
 	console.log(picIndex);
-	pictureLoader(picIndex);
+	imageLoader(picture, picIndex);
 }
 rightArrow.onclick = () => {
 	if (picIndex === gallery.length - 1) {
 		picIndex = 0;
-		console.log(picIndex);
+		console.log(picture, picIndex);
 	} else {
 		picIndex++;
 		console.log(picIndex);
 	}
-	console.log(picIndex);
-	pictureLoader(picIndex);
+	console.log(picture, picIndex);
+	imageLoader(picture, picIndex);
+}
+
+for (let i = 0; i < 8/*gallery.length*/; i++) {
+	let thumb = document.querySelector(`.thumb${i}`);
+
+	thumb.onclick = (thumb) => {
+		imageLoader(picture, i);
+	}
 }
