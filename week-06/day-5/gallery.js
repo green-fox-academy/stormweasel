@@ -16,6 +16,7 @@ let gallery = [
 let picture = document.querySelector('#picture img');
 let leftSliderArrow = document.querySelector('.slider button.left');
 let rightSliderArrow = document.querySelector('.slider button.right');
+// Creating thumbs
 let thumbnails = document.querySelector('.thumbnails');
 for (let i = 0; i < gallery.length; i++) {
 	if (i === 0) {
@@ -60,15 +61,17 @@ let rightThumbArrow = document.querySelector('.thumbnails button.right');
 let picIndex = 0;
 
 // Functions:
-function imageLoader(element, picIndex) {
-	let url = gallery[picIndex][0];
-	let alt = gallery[picIndex][1];
+function imageLoader(element, i) {
+	let url = gallery[i][0];
+	let alt = gallery[i][1];
 	element.setAttribute('src', url);
 	element.setAttribute('alt', alt);
+	picIndex = i;
+	console.log(picIndex);
 }
 
 
-for (let i = 0; i < 8/*gallery.length*/; i++) {
+for (let i = 0; i < gallery.length; i++) {
 	let thumb = document.querySelector(`.thumb${i}`);
 	thumb.onclick = (thumb) => {
 		imageLoader(picture, i);
@@ -101,13 +104,29 @@ leftThumbArrow.onclick = () => {
 	picIndex--;
 	console.log(picIndex);
 	imageLoader(picture, picIndex);
+	// if (picIndex > 7) {
+	// 	let thumbForward = document.querySelector(`.thumb${picIndex - 8}`);
+	// 	thumbForward.setAttribute(`class`, `thumb${picIndex - 8} invisible`);
+	// 	thumbForward.setAttribute(`style`, `display: none;`);
+	// 	let thumbLater = document.querySelector(`.thumb${picIndex}`);
+	// 	thumbLater.setAttribute(`class`, `thumb${picIndex} visible`);
+	// 	thumbLater.removeAttribute(`style`);
+	// }
 }
 rightThumbArrow.onclick = () => {
 	if (picIndex === gallery.length - 1) { return; }
 	picIndex++;
 	console.log(picIndex);
 	imageLoader(picture, picIndex);
+	if (picIndex > 7) {
+		let thumbForward = document.querySelector(`.thumb${picIndex - 8}`);
+		thumbForward.setAttribute(`class`, `thumb${picIndex - 8} invisible`);
+		thumbForward.setAttribute(`style`, `display: none;`);
+		let thumbLater = document.querySelector(`.thumb${picIndex}`);
+		thumbLater.setAttribute(`class`, `thumb${picIndex} visible`);
+		thumbLater.removeAttribute(`style`);
 	}
+}
 
 
 

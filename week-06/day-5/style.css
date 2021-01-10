@@ -58,7 +58,7 @@ button.right{
  margin: 0 28% 0 28%;
 }
 
-.thumb {
+.thumb .visible {
 	float:left;
 	width: 25px;
 	margin: 2% 1%;
