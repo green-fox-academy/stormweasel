@@ -5,13 +5,19 @@ let gallery = [
 	['./images/Reservoir_Dogs.poster.jpg', 'poster-reservoir-dogs'],
 	['./images/Pulp-fiction-vintage-movie-poster.jpg', 'poster-pulp-fiction'],
 	['./images/JackieBrown.poster1.jpg', 'poster-jackie-brown'],
+	['./images/jackie brown.jpg', 'poster-jackie-brown2'],
 	['./images/kill_bill_poster.jpg', 'poster-kill-bill'],
 	['./images/Grindhouse - Poster-quentin-tarantino-9750016-1600-1200.jpg', 'poster-grindhouse'],
 	['./images/Inglorious12951.jpg', 'poster-inglorious-basterds'],
+	['./images/inglourious-basterds-set-brad-pitt.jpg', 'poster-inglorious-basterds2'],
 	['./images/django-character-posters.3.jpg', 'poster-django-unchained'],
 	['./images/hateful 8.poster.jpg', 'poster-hateful-8'],
-	['./images/Once upon a time in Hollywood.poster2.jpg', 'poster-once-upon-hollywood'],
+	['./images/Once upon a time in Hollywood.poster1.jpg', 'poster-once-upon-hollywood'],
+	['./images/Once upon a time in Hollywood.poster2.jpg', 'poster-once-upon-hollywood2'],
+	
+	
 ]
+console.log(7 - 8);
 // Elements picked:
 let picture = document.querySelector('#picture img');
 let leftSliderArrow = document.querySelector('.slider button.left');
@@ -27,7 +33,7 @@ for (let i = 0; i < gallery.length; i++) {
 
 	let thumb = document.createElement('button');
 	thumb.setAttribute(`class`, `thumb${i} visible`);
-	thumb.innerText = i + 1;
+	thumb.innerText = i;
 	// // Picture as background:
 	// thumb.setAttribute(`style`,`background-image: url(${gallery[i]}); background-size: 100%;` );
 
@@ -70,14 +76,25 @@ function imageLoader(element, i) {
 	console.log(picIndex);
 }
 
+function thumbRoller (indexToVanish, indexToAppear) {
+	let thumbToVanish = document.querySelector(`.thumb${indexToVanish}`);
+	thumbToVanish.setAttribute(`class`, `thumb${indexToVanish} invisible`);
+	thumbToVanish.setAttribute(`style`, `display: none; `);
+	let thumbToAppear = document.querySelector(`.thumb${indexToAppear}`);
+	thumbToAppear.setAttribute(`class`, `thumb${indexToAppear} visible`);
+	thumbToAppear.removeAttribute(`style`);
+}
 
+// Onclick functions:
+
+		// click on thumb - load picture
 for (let i = 0; i < gallery.length; i++) {
 	let thumb = document.querySelector(`.thumb${i}`);
 	thumb.onclick = (thumb) => {
 		imageLoader(picture, i);
 	}
 }
-
+		// click on slider arrows - rolls picture
 leftSliderArrow.onclick = () => {
 	if (picIndex === 0) {
 		picIndex = gallery.length - 1;
@@ -99,34 +116,29 @@ rightSliderArrow.onclick = () => {
 	imageLoader(picture, picIndex);
 }
 
+		// click on thumbnail arrows - rolls thumbnails
 leftThumbArrow.onclick = () => {
-	if (picIndex === 0) { return; }
-	picIndex--;
-	console.log(picIndex);
-	imageLoader(picture, picIndex);
-	// if (picIndex > 7) {
-	// 	let thumbForward = document.querySelector(`.thumb${picIndex - 8}`);
-	// 	thumbForward.setAttribute(`class`, `thumb${picIndex - 8} invisible`);
-	// 	thumbForward.setAttribute(`style`, `display: none;`);
-	// 	let thumbLater = document.querySelector(`.thumb${picIndex}`);
-	// 	thumbLater.setAttribute(`class`, `thumb${picIndex} visible`);
-	// 	thumbLater.removeAttribute(`style`);
-	// }
+	let visibles = document.querySelectorAll('button.visible');
+
+	let firstVisible = document.querySelector('button.visible');
+	let indexToAppear = firstVisible.textContent - 1;
+	if (indexToAppear < 0) { return; }
+
+	let lastVisible = visibles[visibles.length - 1];
+	let indexToVanish = lastVisible.textContent;
+	
+	thumbRoller (indexToVanish, indexToAppear);
 }
+
 rightThumbArrow.onclick = () => {
-	if (picIndex === gallery.length - 1) { return; }
-	picIndex++;
-	console.log(picIndex);
-	imageLoader(picture, picIndex);
-	if (picIndex > 7) {
-		let thumbForward = document.querySelector(`.thumb${picIndex - 8}`);
-		thumbForward.setAttribute(`class`, `thumb${picIndex - 8} invisible`);
-		thumbForward.setAttribute(`style`, `display: none;`);
-		let thumbLater = document.querySelector(`.thumb${picIndex}`);
-		thumbLater.setAttribute(`class`, `thumb${picIndex} visible`);
-		thumbLater.removeAttribute(`style`);
-	}
+	let visibles = document.querySelectorAll('button.visible');
+	
+	let firstVisible = document.querySelector('button.visible');
+	let indexToVanish = firstVisible.textContent;
+
+	let lastVisible = visibles[visibles.length-1];
+	let indexToAppear = Number(lastVisible.textContent)+1;
+	if (indexToAppear === gallery.length) { return; }
+
+	thumbRoller (indexToVanish, indexToAppear);
 }
-
-
-
