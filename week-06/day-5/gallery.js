@@ -14,18 +14,18 @@ let gallery = [
 ]
 // Elements picked:
 let picture = document.querySelector('#picture img');
-let leftArrow = document.querySelector('.left');
-let rightArrow = document.querySelector('.right');
+let leftSliderArrow = document.querySelector('.slider button.left');
+let rightSliderArrow = document.querySelector('.slider button.right');
 let thumbnails = document.querySelector('.thumbnails');
-for (let i = 0; i < 8/*gallery.length*/; i++) {
+for (let i = 0; i < gallery.length; i++) {
 	if (i === 0) {
-		let leftArrow = document.createElement('button');
-		leftArrow.setAttribute('class', 'left');
-		thumbnails.appendChild(leftArrow);
+		let leftThumbArrow = document.createElement('button');
+		leftThumbArrow.setAttribute('class', 'left');
+		thumbnails.appendChild(leftThumbArrow);
 	}
 
 	let thumb = document.createElement('button');
-	thumb.setAttribute(`class`, `thumb${i}`);
+	thumb.setAttribute(`class`, `thumb${i} visible`);
 	thumb.innerText = i + 1;
 	// // Picture as background:
 	// thumb.setAttribute(`style`,`background-image: url(${gallery[i]}); background-size: 100%;` );
@@ -42,12 +42,20 @@ for (let i = 0; i < 8/*gallery.length*/; i++) {
 	// thumb.innerHTML = imageLoader(thumb, i);
 	thumbnails.appendChild(thumb);
 
-	if (i === 7 /*gallery.length-1*/) {
-		let rightArrow = document.createElement('button');
-		rightArrow.setAttribute('class', 'right');
-		thumbnails.appendChild(rightArrow);
+	if (i > 7) {
+		thumb.setAttribute("style", "display: none;");
+		thumb.setAttribute(`class`, `thumb${i} invisible`);
+	}
+
+	if (i === gallery.length - 1) {
+		let rightThumbArrow = document.createElement('button');
+		rightThumbArrow.setAttribute('class', 'right');
+		thumbnails.appendChild(rightThumbArrow);
 	}
 }
+let leftThumbArrow = document.querySelector('.thumbnails button.left');
+let rightThumbArrow = document.querySelector('.thumbnails button.right');
+
 // variables:
 let picIndex = 0;
 
@@ -59,7 +67,15 @@ function imageLoader(element, picIndex) {
 	element.setAttribute('alt', alt);
 }
 
-leftArrow.onclick = () => {
+
+for (let i = 0; i < 8/*gallery.length*/; i++) {
+	let thumb = document.querySelector(`.thumb${i}`);
+	thumb.onclick = (thumb) => {
+		imageLoader(picture, i);
+	}
+}
+
+leftSliderArrow.onclick = () => {
 	if (picIndex === 0) {
 		picIndex = gallery.length - 1;
 	} else {
@@ -68,7 +84,7 @@ leftArrow.onclick = () => {
 	console.log(picIndex);
 	imageLoader(picture, picIndex);
 }
-rightArrow.onclick = () => {
+rightSliderArrow.onclick = () => {
 	if (picIndex === gallery.length - 1) {
 		picIndex = 0;
 		console.log(picture, picIndex);
@@ -80,10 +96,18 @@ rightArrow.onclick = () => {
 	imageLoader(picture, picIndex);
 }
 
-for (let i = 0; i < 8/*gallery.length*/; i++) {
-	let thumb = document.querySelector(`.thumb${i}`);
-
-	thumb.onclick = (thumb) => {
-		imageLoader(picture, i);
-	}
+leftThumbArrow.onclick = () => {
+	if (picIndex === 0) { return; }
+	picIndex--;
+	console.log(picIndex);
+	imageLoader(picture, picIndex);
 }
+rightThumbArrow.onclick = () => {
+	if (picIndex === gallery.length - 1) { return; }
+	picIndex++;
+	console.log(picIndex);
+	imageLoader(picture, picIndex);
+	}
+
+
+
