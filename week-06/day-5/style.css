@@ -1,40 +1,27 @@
 
-
-body {
+ #main {
 	width: 100%;
-	height: 200%;
+	height: 600px;
 	background-color: grey;
-	background: -webkit-linear-gradient(top, white 0%, lightgrey 70%);
-	background: -webkit-linear-gradient(top, white 0%, lightgrey 0%);
+	background: -moz-linear-gradient(top, white 0%, lightgrey 70%);
 	background: -webkit-linear-gradient(top, white 0%, rgb(136, 133, 133) 90%);
-}
-#main {
-	width:80%;
-	height: 250px;
-	margin: 10%;
-	/* background-color: blue; */
+	background: linear-gradient(top, white 0%, lightgrey 0%);
 } 
+
 .slider {
-	width: 100%;
-	height: 70%;
+	left:25%;
+	top: 15%; 
+	width: 710px;
+	height: 399.375px;
+	margin: 10% 30% 1% 30%;
 	background-color: white;
 }
 
-button.left {
+.slider button.left {
 	float: left;
 	width: 5%;
 	height: 100%;
 	background-image: url('./arrow.svg');
-	background-repeat: no-repeat; 
-	background-position: center;
-	border: 0;
-}
-
-button.right{
-	float: right;
-	height: 100%;
-	background-image: url('./arrow.svg');
-	transform: rotateY(180deg);width: 5%;
 	background-repeat: no-repeat; 
 	background-position: center;
 	border: 0;
@@ -52,20 +39,57 @@ button.right{
 	height: 100%;
 }
 
-.thumbnails{
- width: 42%;
- height: 10%;
- margin: 0 28% 0 28%;
+.slider button.right{
+	float: right;
+	width: 5%;
+	height: 100%;
+	background-image: url('./arrow.svg');
+	transform: rotateY(180deg);
+	background-repeat: no-repeat; 
+	background-position: center;
+	border: 0;
 }
 
-.thumb .visible {
-	float:left;
-	width: 25px;
+.slider button.right:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+.thumbnails{
+width: 477px;
+height: 100px;
+ /* background-color: khaki; */
+ margin: 0 0 0 40%;
+}
+
+.visible {
+	display: inline-block;
+	width: 40px;
 	margin: 2% 1%;
-	height: 25px;
+	height: 40px;
 	box-shadow: 1px 2px 6px 1px black;
-	/* background-image: url('./images/tarantino-filmography.poster.jpg'); */
+	/* background-image: url('./images/tarantino-filmography.poster.jpg');  */
 	background-size: 100%; 
+}
+
+.thumbnails button.left {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-image: url('./arrow.svg');
+	background-repeat: no-repeat; 
+	background-position: center;
+}
+.thumbnails button.right {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-image: url('./arrow.svg');
+	background-repeat: no-repeat; 
+	background-position: center;
+	transform: rotateY(180deg);
 }
 
 .thumbImage {
