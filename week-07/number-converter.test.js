@@ -18,3 +18,11 @@ test('Should return error massage, if each input is missing', t => {
 	t.equal (actual, expected);
 	t.end();
 });
+
+test('Should return error massage, if amount is not a number', t => {
+	const actual = numberConverter( 'kiokl', '$');
+	const expected = "Amount is not a number";
+
+	t.equal (actual, expected);
+	t.end();
+});
