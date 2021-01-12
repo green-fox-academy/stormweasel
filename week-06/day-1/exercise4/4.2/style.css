@@ -1,0 +1,58 @@
+/* The header should fill available horizontal space
+The header should stay in view, on top, even after scrolling
+When picking the semantically correct element, consider the roles of the boxes:
+Purple: Header
+Cyan: Navigation links
+Yellow: Main Content
+Green: Sidebar (not main content)
+Gray: Footer */
+
+#header{
+	position: fixed;
+	height: 60px;
+	background-color: rgb(176,42,255);
+}
+
+.navigation-links a{
+	float: left;
+	width: 85px;
+	height: 35px;
+	margin: 15px 7px 0px;
+	background-color:rgb(42,234,255);
+}
+
+a:first-child{
+	width: 95px;
+	margin: 15px 7px 0px 55px;
+}
+
+a:nth-child(2) {
+	width:110px;
+}
+
+a:last-child{
+width: 95px;
+}
+
+#main-content {
+	display: inline-block;
+	width: 510px;
+	height: 510px;
+	margin: 70px 60px 5px 7px;
+	background-color: rgb(255,214,42);
+}
+
+#sidebar {
+	display: inline-block;
+	width:250px;
+	height:510px;
+	margin: 70px 7px 5px 55px; 
+	background-color:rgb(81,212,0);
+}
+
+#footer {
+	width: 778px;
+	height: 65px;
+	margin: 5px 60px 66px 55px;
+	background-color: rgb(204,204,204);
+}
