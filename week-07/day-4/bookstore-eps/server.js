@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-app.use(express.json()); //body parser az expressbe építve
+app.set('view engine', 'ejs');
 
 let conn = mysql.createConnection({
 	host: 'localhost',
@@ -16,22 +16,19 @@ let conn = mysql.createConnection({
 conn.connect((err) => {
 	if (err) { throw err; }
 	console.log('connected to mysql')
-})
-
-app.get('/', (req, res) => {
-	res.send('Server is running')
 });
 
-app.get('/titles', (req, res) => {
-	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
+app.get('/', (req, res) => {
+		conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		console.log(rows);
 		if (err) {
 			console.log(err.toString());
 			res.status(500).json({ 'error': 'database error' });
 		}
-		res.json(rows);
+		res.render('templated', { rows });
 	});
 });
+
 
 // title of book - book_mast: book_name 
 // name of author - book_mast.aut_id = author.aut_id ->aut_name
@@ -51,7 +48,7 @@ app.get('/detailed', (req, res) => {
 	let publisher = req.query.publisher;
 	let priceLowerThan = req.query.plt;
 	let priceGreaterThan = req.query.pgt;
-	
+
 	conn.query(command, (err, rows) => {
 		if (err) {
 			console.log(err.toString());
@@ -61,7 +58,7 @@ app.get('/detailed', (req, res) => {
 		if (category === undefined && publisher === undefined &&
 			priceLowerThan === undefined && priceGreaterThan === undefined) {
 			console.log('no filter')
-			res.json(rows);
+			res.render('detailed', { rows });
 			return
 		}
 
@@ -69,16 +66,16 @@ app.get('/detailed', (req, res) => {
 		for (let i = 0; i < rows.length; i++) {
 			if (rows[i].cate_descrip === category ||
 				rows[i].pub_name === publisher ||
-				rows[i].book_price < priceLowerThan ||
+				rows[i].book_price <= priceLowerThan ||
 				rows[i].book_price > priceGreaterThan) {
 				filtered.push(rows[i]);
 			}
 		}
 		console.log(filtered);
-
-		res.json(filtered);
+		rows = filtered;
+		res.render('detailed', { rows });
 	});
 });
 
 app.listen(3000);
-console.log('The server is runnning on PORT 3000');
+console.log('The server is running on PORT 3000');

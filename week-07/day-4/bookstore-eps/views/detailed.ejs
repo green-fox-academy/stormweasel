@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		th {
+			text-align: left;
+			text-decoration: underline ;
+		}
+		a {
+			text-decoration: none;
+		}
+	</style>
+	
+	<title>Bookstore titles</title>
+</head>
+<body>
+	<h1>THE BOOKS</h1>
+	<h3>Our bookstore offers the following titles:</h3>
+	<table style="width: 80%">
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Category</th>
+		<th>Publisher</th>
+		<th>Price</th>
+	</tr>
+		<% rows.forEach((elem) =>{ %> 
+	<tr>
+		<td><i><%=elem.book_name%></i></td>
+		<td><strong><%= elem.aut_name %></strong></td>
+		<td><%= elem.cate_descrip  %></td>
+		<td><%= elem.pub_name %></td>
+		<td><strong><%= elem.book_price %> $</strong></td>
+	</tr>
+		<% }); %> 
+	</table>
+	<button>
+		<a href="http://localhost:3000">back</a>
+	</button>
+	</body>
+</html>

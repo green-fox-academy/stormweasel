@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		#main {
+			width: 60%;
+			margin: 0 20%;
+		}
+		li {
+			font-style: italic;
+		}
+		a {
+			display: block;
+			margin: 0 0 0 5px;
+		}
+		button a{
+			text-decoration: none;
+		}
+
+		.titles {
+			display: inline-block;
+		}
+
+		.links {
+			position: absolute;
+			top: 100px;
+			left: 700px;
+			display: inline-block;
+
+		}
+	</style>
+
+	<title>Bookstore titles</title>
+</head>
+
+<body>
+	<div id="main">
+		<h1>THE BOOKS</h1>
+		<h3>Our bookstore offers the following titles:</h3>
+		<div class="titles">
+			<ul>
+				<% rows.forEach((elem)=>{ %>
+					<li>
+						<%= elem.book_name %>
+					</li>
+					<% }); %>
+			</ul>
+			<button>
+				<a href="http://localhost:3000/detailed">Detailed list</a>
+			</button>
+			<a href="http://localhost:3000/detailed/?plt=100">Books for and under 100 dollars</a>
+			<a href="http://localhost:3000/detailed/?pgt=100">Books over 100 dollars</a>
+		</div>
+		<div class="links">
+			<h3 style="text-decoration: underline;">Categories</h3>
+			<a href="http://localhost:3000/detailed/?category=Computers">Computers</a>
+			<a href="http://localhost:3000/detailed/?category=Medical">Medical</a>
+			<a href="http://localhost:3000/detailed/?category=Nature">Nature</a>
+			<a href="http://localhost:3000/detailed/?category=Science">Science</a>
+			<a href="http://localhost:3000/detailed/?category=Technology">Technology</a>
+
+			<h3 style="text-decoration: underline;">Publishers</h3>
+			<a href="http://localhost:3000/detailed/?publisher=BPP Publication">BPP Publication</a>
+			<a href="http://localhost:3000/detailed/?publisher=Jex Max Publication">Jex Max Publication</a>
+			<a href="http://localhost:3000/detailed/?publisher=Mountain Publication">Mountain Publication</a>
+			<a href="http://localhost:3000/detailed/?publisher=New Harrold Publication">New Harrold Publication</a>
+			<a href="http://localhost:3000/detailed/?publisher=Novel Publisher Ltd.">Novel Publisher Ltd.</a>
+			<a href="http://localhost:3000/detailed/?publisher=Pieterson Grp. of Publishers">Pieterson Grp. of Publishers</a>
+			<a href="http://localhost:3000/detailed/?publisher=Summer Night Publication">Summer Night Publication</a>
+			<a href="http://localhost:3000/detailed/?publisher=	Ultra Press Inc."> Ultra Press Inc.</a>
+		</div>
+</body>
+
+</html>
