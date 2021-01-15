@@ -58,13 +58,13 @@ app.get('/detailed', (req, res) => {
 	addendMaker(publisher, 'pub_name');
 
 	let priceLowerThan = req.query.plt;
-	let priceGreaterThan = req.query.pgt;
-
+	
 	if (priceLowerThan != undefined) {
 		let addend = ` book_price < ${Number(priceLowerThan)}`;
 		console.log(addend);
 		filterLine.push(addend);
 	}
+	let priceGreaterThan = req.query.pgt;
 	if (priceGreaterThan != undefined) {
 		let addend = ` book_price > ${Number(priceGreaterThan)}`;
 		console.log(addend);
