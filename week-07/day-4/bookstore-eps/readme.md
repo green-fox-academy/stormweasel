@@ -5,8 +5,10 @@ ugyanazon elem többszöri megjelenése megoldva (unique függvény)
 
 (többes filterezés itt úgy értendő, hogy bővíti a találatok számát az újabb paraméterek alapján (pl Science ÉS Nature kategóriájú könyvek IS)
 
-mindkét változat template-et (ejs-ben) küld a frontendnek 
+a filter-form elkészült
 
-az xhr változat még nem működik
-a form a többes filtereknek még nem készült el
+
+mindkét változat template-et (ejs-ben) küld a frontendnek, css és script.js hozzáadva a template-hez
+
 szűkítő többes filterezés még nem készült el
+az xhr változat még nem működik

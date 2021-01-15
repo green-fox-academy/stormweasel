@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'));
 
 let conn = mysql.createConnection({
 	host: 'localhost',

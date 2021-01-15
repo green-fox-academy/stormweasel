@@ -4,35 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		#main {
-			width: 60%;
-			margin: 0 20%;
-		}
-		li {
-			font-style: italic;
-		}
-		a {
-			display: block;
-			margin: 0 0 0 5px;
-		}
-		button a{
-			text-decoration: none;
-		}
-
-		.titles {
-			display: inline-block;
-		}
-
-		.links {
-			position: absolute;
-			top: 100px;
-			left: 700px;
-			display: inline-block;
-
-		}
-	</style>
-
+	<link rel="stylesheet" href="./templated.css">
 	<title>Bookstore titles</title>
 </head>
 
@@ -51,27 +23,46 @@
 			<button>
 				<a href="http://localhost:3000/detailed">Detailed list</a>
 			</button>
-			<a href="http://localhost:3000/detailed/?plt=100">Books for and under 100 dollars</a>
-			<a href="http://localhost:3000/detailed/?pgt=100">Books over 100 dollars</a>
 		</div>
-		<div class="links">
-			<h3 style="text-decoration: underline;">Categories</h3>
-			<a href="http://localhost:3000/detailed/?category=Computers">Computers</a>
-			<a href="http://localhost:3000/detailed/?category=Medical">Medical</a>
-			<a href="http://localhost:3000/detailed/?category=Nature">Nature</a>
-			<a href="http://localhost:3000/detailed/?category=Science">Science</a>
-			<a href="http://localhost:3000/detailed/?category=Technology">Technology</a>
 
-			<h3 style="text-decoration: underline;">Publishers</h3>
-			<a href="http://localhost:3000/detailed/?publisher=BPP Publication">BPP Publication</a>
-			<a href="http://localhost:3000/detailed/?publisher=Jex Max Publication">Jex Max Publication</a>
-			<a href="http://localhost:3000/detailed/?publisher=Mountain Publication">Mountain Publication</a>
-			<a href="http://localhost:3000/detailed/?publisher=New Harrold Publication">New Harrold Publication</a>
-			<a href="http://localhost:3000/detailed/?publisher=Novel Publisher Ltd.">Novel Publisher Ltd.</a>
-			<a href="http://localhost:3000/detailed/?publisher=Pieterson Grp. of Publishers">Pieterson Grp. of Publishers</a>
-			<a href="http://localhost:3000/detailed/?publisher=Summer Night Publication">Summer Night Publication</a>
-			<a href="http://localhost:3000/detailed/?publisher=	Ultra Press Inc."> Ultra Press Inc.</a>
+		<div class="links">
+			<form action="/detailed" method="GET">
+				<fieldset class="categories">
+					<legend>Categories</legend>
+					<label><input type="checkbox" name="category" value="Computers">Computers</label>
+					<label><input type="checkbox" name="category" value="Medical">Medical</label>
+					<label><input type="checkbox" name="category" value="Nature">Nature</label>
+					<label><input type="checkbox" name="category" value="Science">Science</label>
+					<label><input type="checkbox" name="category" value="Technology">Technology</label>
+				</fieldset>
+				<fieldset class="publishers">
+					<legend>Publishers</legend>
+					<label><input type="checkbox" name="publisher" value="BPP Publication">BPP Publication</label>
+					<label><input type="checkbox" name="publisher" value="Jex Max Publication">Jex Max Publication</label>
+					<label><input type="checkbox" name="publisher" value="Mountain Publication">Mountain Publication</label>
+					<label><input type="checkbox" name="publisher" value="New Harrold Publication">New Harrold Publication</label>
+					<label><input type="checkbox" name="publisher" value="Novel Publisher Ltd.">Novel Publisher Ltd.</label>
+					<label><input type="checkbox" name="publisher" value="Pieterson Grp. of Publishers">Pieterson Grp. of
+						Publishers</label>
+					<label><input type="checkbox" name="publisher" value="Summer Night Publication">Summer Night
+						Publication</label>
+					<label><input type="checkbox" name="publisher" value="Ultra Press Inc.">Ultra Press Inc.</label>
+				</fieldset>
+				<fieldset class="price-setter">
+					<legend>Price-range setter</legend>
+					<label for="plt">Books cheaper than</label>
+					<input type="checkbox" id="pgt-box" onchange=enablePlt()>
+					<input type="number" name="plt" id="plt" value="0" disabled>
+					<label for="plt">Books cost more than</label>
+					<input type="checkbox" id="pgt-box" onchange=enablePgt()>
+					<input type="number" name="pgt" id="pgt" value="0" disabled>
+				</fieldset>
+				<fieldset id="filter-button">
+					<button type="submit">Filter</button>
+				</fieldset>
+			</form>
 		</div>
 </body>
+<script src="./templated.js"></script>
 
 </html>

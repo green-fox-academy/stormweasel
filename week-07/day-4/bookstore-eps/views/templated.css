@@ -1,0 +1,54 @@
+#main {
+	width: 60%;
+	margin: 0 20%;
+}
+
+li {
+	font-style: italic;
+}
+
+a {
+	display: block;
+	margin: 0 0 0 5px;
+}
+
+button a {
+	text-decoration: none;
+}
+
+.titles {
+	display: inline-block;
+}
+
+.links {
+	position: absolute;
+	top: 100px;
+	left: 700px;
+	display: inline-block;
+	width: 41%;
+	border: 10px;
+	border-style: groove;
+}
+
+legend {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#filter-button button {
+	width: 90%;
+	margin: 0 5%;
+	border: 4px;
+	border-style: groove;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+	display: inline-block;
+	margin: 2px 0;
+	width: 45px;
+}
+
+#plt:disabled, #pgt:disabled{
+background-color: lightgrey;
+}
