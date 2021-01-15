@@ -38,23 +38,24 @@ app.get('/detailed', (req, res) => {
 	JOIN publisher ON book_mast.pub_id= publisher.pub_id "
 	let filterLine = [];
 
-	let category = req.query.category;
-	if (category !== undefined && typeof (category) === "string") {
-		let addend = ` cate_descrip = "${category}"`;
-		console.log(addend);
-		filterLine.push(addend);
-	} else {
-		category.forEach((elem, index) => {
-			let addend = ` cate_descrip = "${category[index]}"`;
+	function addendMaker (query, column) {
+		if (query !== undefined && typeof (query) === "string") {
+			let addend = ` ${column} = "${query}"`;
+			console.log(addend);
 			filterLine.push(addend);
-		})
+		} else if (query !== undefined) {
+			query.forEach((elem, index) => {
+				let addend = ` ${column} = "${query[index]}"`;
+				filterLine.push(addend);
+			})
+		}
+		return filterLine;
 	}
+
+	let category = req.query.category;
+	addendMaker(category, 'cate_descrip');	
 	let publisher = req.query.publisher;
-	if (publisher != undefined) {
-		let addend = ` pub_name = "${publisher}"`;
-		console.log(addend);
-		filterLine.push(addend);
-	}
+	addendMaker(publisher, 'pub_name');
 
 	let priceLowerThan = req.query.plt;
 	let priceGreaterThan = req.query.pgt;
@@ -69,7 +70,7 @@ app.get('/detailed', (req, res) => {
 		console.log(addend);
 		filterLine.push(addend);
 	}
-	console.log(filterLine);
+	console.log('FilterLine: '+ filterLine);
 	let count = 0;
 	for (let i = 0; i < filterLine.length; i++) {
 		if (filterLine[i] !== undefined && count === 0) {
