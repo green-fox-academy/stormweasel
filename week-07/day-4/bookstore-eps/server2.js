@@ -21,7 +21,7 @@ conn.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-		conn.query('SELECT book_name FROM book_mast', (err, rows) => {
+	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		console.log(rows);
 		if (err) {
 			console.log(err.toString());
@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
 	});
 });
 
+function unique(arr) {
+  let newList = [];
+
+  arr.map(function (i) {
+    if (!newList.includes(i)) {
+      newList.push(arr[arr.lastIndexOf(i)]);
+    }
+  } )
+  return newList;
+}
 
 // title of book - book_mast: book_name 
 // name of author - book_mast.aut_id = author.aut_id ->aut_name
@@ -52,6 +62,7 @@ app.get('/detailed', (req, res) => {
 	let priceGreaterThan = req.query.pgt;
 
 	conn.query(command, (err, rows) => {
+		0
 		if (err) {
 			console.log(err.toString());
 			res.status(500).json({ 'error': 'database error' });
@@ -63,18 +74,17 @@ app.get('/detailed', (req, res) => {
 			res.render('detailed', { rows });
 			return
 		}
-
 		let filtered = [];
 		for (let i = 0; i < rows.length; i++) {
-			if (rows[i].cate_descrip === category ||
-				rows[i].pub_name === publisher ||
-				rows[i].book_price <= priceLowerThan ||
-				rows[i].book_price > priceGreaterThan) {
-				filtered.push(rows[i]);
-			}
+			// console.log(i);
+			console.log('rows[i]: ' + rows[i].cate_descrip);
+			if (category !== undefined && category.includes(rows[i].cate_descrip)) { filtered.push(rows[i]); }
+			if (publisher !== undefined && publisher.includes(rows[i].pub_name)) { filtered.push(rows[i]); }
+			if (rows[i].book_price <= priceLowerThan && priceLowerThan !== undefined) { filtered.push(rows[i]); }
+			if (rows[i].book_price > priceGreaterThan && priceGreaterThan !== undefined) { filtered.push(rows[i]); }
+
 		}
-		console.log(filtered);
-		rows = filtered;
+		rows = unique(filtered);
 		res.render('detailed', { rows });
 	});
 });
