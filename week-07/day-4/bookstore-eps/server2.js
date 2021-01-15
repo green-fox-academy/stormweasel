@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-
+app.use(express.static(__dirname + '/views'));
 app.set('view engine', 'ejs');
 
 
@@ -22,7 +22,6 @@ conn.connect((err) => {
 
 app.get('/', (req, res) => {
 	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
-		console.log(rows);
 		if (err) {
 			console.log(err.toString());
 			res.status(500).json({ 'error': 'database error' });
@@ -32,14 +31,14 @@ app.get('/', (req, res) => {
 });
 
 function unique(arr) {
-  let newList = [];
+	let newList = [];
 
-  arr.map(function (i) {
-    if (!newList.includes(i)) {
-      newList.push(arr[arr.lastIndexOf(i)]);
-    }
-  } )
-  return newList;
+	arr.map(function (i) {
+		if (!newList.includes(i)) {
+			newList.push(arr[arr.lastIndexOf(i)]);
+		}
+	})
+	return newList;
 }
 
 // title of book - book_mast: book_name 
@@ -75,16 +74,24 @@ app.get('/detailed', (req, res) => {
 			return
 		}
 		let filtered = [];
+		let keywords = [];
 		for (let i = 0; i < rows.length; i++) {
 			// console.log(i);
-			console.log('rows[i]: ' + rows[i].cate_descrip);
-			if (category !== undefined && category.includes(rows[i].cate_descrip)) { filtered.push(rows[i]); }
-			if (publisher !== undefined && publisher.includes(rows[i].pub_name)) { filtered.push(rows[i]); }
+			// console.log('rows[i]: ' + rows[i].cate_descrip);
+			if (category !== undefined && category.includes(rows[i].cate_descrip)) {
+				filtered.push(rows[i]);
+				keywords.push(rows[i].cate_descrip);
+			}
+			if (publisher !== undefined && publisher.includes(rows[i].pub_name)) { 
+				filtered.push(rows[i]); 
+				keywords.push(rows[i].pub_name);
+			}
 			if (rows[i].book_price <= priceLowerThan && priceLowerThan !== undefined) { filtered.push(rows[i]); }
 			if (rows[i].book_price > priceGreaterThan && priceGreaterThan !== undefined) { filtered.push(rows[i]); }
 
 		}
 		rows = unique(filtered);
+		console.log(rows);
 		res.render('detailed', { rows });
 	});
 });
