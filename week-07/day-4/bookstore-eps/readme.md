@@ -7,7 +7,7 @@ ugyanazon elem többszöri megjelenése megoldva (unique függvény)
 											(pl Science ÉS Nature kategóriájú könyvek IS);
 szűkítő filterezés: a találatnak minden feltételnek meg kell feleni;)
 
-a filter-form elkészült
+a filter-form elkészült, üres eredménynél üzenet hozzáadva detailed.html-hez
 
 mindkét változat template-et (ejs-ben) küld a frontendnek, css és script.js hozzáadva a template-hez
 

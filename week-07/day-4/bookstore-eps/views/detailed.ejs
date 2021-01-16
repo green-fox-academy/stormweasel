@@ -3,22 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		th {
-			text-align: left;
-			text-decoration: underline ;
-		}
-		a {
-			text-decoration: none;
-		}
-	</style>
-	
+	<link rel="stylesheet" href="./detailed.css">
 	<title>Bookstore detailed titles</title>
 </head>
 <body>
 	<h1>THE BOOKS</h1>
 	<h3>Our bookstore offers the following titles:</h3>
-	<table style="width: 80%">
+	<table>
 	<tr>
 		<th>Title</th>
 		<th>Author</th>
@@ -36,6 +27,9 @@
 	</tr>
 		<% }); %> 
 	</table>
+	<% if (rows.length === 0) { %>
+		<h3>Sorry, there is no such book in our store. :(</h3>
+	<% } %>  
 	<button>
 		<a href="http://localhost:3000">back</a>
 	</button>
