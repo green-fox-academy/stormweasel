@@ -8,7 +8,6 @@ szűkítő filterezés: a találatnak minden feltételnek meg kell felelni;)
 
 mindkét változat template-et (ejs-ben) küld a frontendnek, css és script.js hozzáadva a template-hez
 a filter-form elkészült, üres eredménynél üzenet hozzáadva detailed.html-hez, 
-radio páros hozzáadva a filter-formhoz 
+radio páros hozzáadva a filter-formhoz, a radiok beállítását megőrzi
 
-(a beállítás megőrzés a server.js-nél nem működik)
 az xhr változat még nem működik

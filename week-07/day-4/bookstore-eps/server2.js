@@ -30,6 +30,7 @@ function unique(arr) {
 }
 
 app.get('/', (req, res) => {
+	console.log('Narrow at page onload: ' + filterNarrow) ;
 	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		if (err) {
 			console.log(err.toString());

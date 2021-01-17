@@ -22,6 +22,7 @@ conn.connect((err) => {
 let filterNarrow = "on";
 
 app.get('/', (req, res) => {
+	console.log(' Narrow at page onload: ' + filterNarrow) ; +
 	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		if (err) {
 			console.log(err.toString());
@@ -57,7 +58,7 @@ app.get('/detailed', (req, res) => {
 		return filterLine;
 	}
 
-	let filterNarrow = req.query.narrow;
+	filterNarrow = req.query.narrow;
 	console.log(`Narrow: ${filterNarrow}`);
 
 	let category = req.query.category;
@@ -97,7 +98,8 @@ app.get('/detailed', (req, res) => {
 			res.status(500).json({ 'error': 'database error' });
 			return;
 		}
-		res.render('detailed', { rows });
+		console.log('before response: ' + filterNarrow);
+		res.render('detailed', { rows});
 	});
 });
 
