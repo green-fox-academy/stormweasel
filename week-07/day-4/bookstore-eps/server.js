@@ -19,13 +19,19 @@ conn.connect((err) => {
 	console.log('connected to mysql')
 });
 
+let filterNarrow = "on";
+
 app.get('/', (req, res) => {
 	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		if (err) {
 			console.log(err.toString());
 			res.status(500).json({ 'error': 'database error' });
 		}
-		res.render('templated', { rows });
+		if (filterNarrow === 'on') {
+			res.render('templated', { rows });
+		} else {
+			res.render('templatedOff', { rows });
+		}
 	});
 });
 
@@ -77,7 +83,7 @@ app.get('/detailed', (req, res) => {
 			command += `WHERE` + filterLine[i];
 			count++;
 		} else if (filterLine[i] !== undefined) {
-			if (filterNarrow) {
+			if (filterNarrow === "on") {
 				command += ` AND` + filterLine[i];
 				continue;
 			}

@@ -6,17 +6,6 @@ const mysql = require('mysql');
 app.use(express.static(__dirname + '/views'));
 app.set('view engine', 'ejs');
 
-function unique(arr) {
-	let newList = [];
-
-	arr.map(function (i) {
-		if (!newList.includes(i)) {
-			newList.push(arr[arr.lastIndexOf(i)]);
-		}
-	})
-	return newList;
-}
-
 let conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -30,16 +19,29 @@ conn.connect((err) => {
 	console.log('connected to mysql')
 });
 
+let filterNarrow = "on";
+
+function unique(arr) {
+	let newList = [];
+	arr.map(function (i) {
+		if (!newList.includes(i)) { newList.push(arr[arr.lastIndexOf(i)]); }
+	})
+	return newList;
+}
+
 app.get('/', (req, res) => {
 	conn.query('SELECT book_name FROM book_mast', (err, rows) => {
 		if (err) {
 			console.log(err.toString());
 			res.status(500).json({ 'error': 'database error' });
 		}
-		res.render('templated', { rows });
+		if (filterNarrow === 'on') {
+			res.render('templated', { rows });
+		} else {
+			res.render('templatedOff', { rows });
+		}
 	});
 });
-
 
 // title of book - book_mast: book_name 
 // name of author - book_mast.aut_id = author.aut_id ->aut_name
@@ -48,18 +50,16 @@ app.get('/', (req, res) => {
 // price -book_mast : book_price
 
 app.get('/detailed', (req, res) => {
-
 	let command = " SELECT book_name, aut_name, cate_descrip, pub_name, book_price \
 	FROM book_mast \
 	JOIN author ON book_mast.aut_id = author.aut_id \
 	JOIN category ON book_mast.cate_id = category.cate_id \
 	JOIN publisher ON book_mast.pub_id= publisher.pub_id "
-
 	let category = req.query.category;
 	let publisher = req.query.publisher;
 	let priceLowerThan = req.query.plt;
 	let priceGreaterThan = req.query.pgt;
-	let filterNarrow = req.query.narrow;
+	filterNarrow = req.query.narrow;
 	console.log(`Narrow: ${filterNarrow}`);
 
 	conn.query(command, (err, rows) => {
@@ -91,35 +91,40 @@ app.get('/detailed', (req, res) => {
 			if (rows[i].book_price > priceGreaterThan && priceGreaterThan !== undefined) {
 				filtered.push(rows[i]);
 			}
+
 		}
-
 		filtered = unique(filtered);
+		console.log("filtered: ");
+		console.log(filtered);
 
-		if (filterNarrow) {
+		if (filterNarrow === 'on') {
 			let isProper = false;
 			let propers = [];
+			keywords = unique(keywords);
+			console.log('Keywords:');
 			console.log(keywords);
 
 			filtered.map((elem) => {
-				for (let i = 0; i < keywords.length; i++) {
-					if (Object.values(elem).includes(keywords[i])) {
-						if (priceLowerThan !== undefined && elem.book_price < priceLowerThan ||
-							priceGreaterThan !== undefined && elem.book_price > priceGreaterThan) {
+				if (keywords.length === 0) {
+					isProper = true;
+				} else {
+					for (let i = 0; i < keywords.length; i++) {
+						if (Object.values(elem).includes(keywords[i])) {
 							isProper = true;
+						} else {
+							isProper = false;
+							break;
 						}
-					} else {
-						isProper = false;
-						break;
 					}
+					if (elem.book_price >= priceLowerThan && priceLowerThan) { isProper = false; }
+					if (elem.book_price <= priceGreaterThan && priceGreaterThan) { isProper = false; }
 				};
 				if (isProper) { propers.push(elem); }
 			});
-			console.log('propers:');
+			console.log("propers: ");
 			console.log(propers);
 			rows = propers;
 		} else {
-			console.log('filtered:');
-			console.log(filtered);
 			rows = filtered;
 		}
 
