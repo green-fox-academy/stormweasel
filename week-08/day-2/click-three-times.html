@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Workshop: EventListeners</title>
+</head>
+
+<body>
+	<p>Wait 5 seconds, then click 3 times!</p>
+	<button>Click me</button>
+
+	<!-- You can work in the html or in a separate js file. Like:
+
+    <script>
+			Create a simple HTML document with one button.
+			If the user clicks the button 3 times, and 5 seconds is already elapsed 
+			since the page is loaded, a text should appear under the button:
+					'5 seconds elapsed and clicked 3 times'
+			If the user starts clicking before the first 5 seconds, nothing should be 
+			printed
+    </script>
+
+    OR
+
+    <script src="one-time-clicker.js"></script> -->
+</body>
+<script>
+	'use script';
+
+	window.onload = () => {
+		console.log('Page is loaded');
+		isTimePassed = false;
+		let button = document.querySelector('button');
+		let counter = 0;
+
+		setTimeout( () => {isTimePassed = true}, 5000);
+
+		function printLine() {
+			let line = document.createElement('p');
+			line.innerText = '5 seconds elapsed from page onload and clicked 3 times';
+			document.body.appendChild(line);
+		}
+
+		button.onclick = () => {
+			console.log(counter);
+			if (isTimePassed) {
+				counter++;
+				if (counter === 3) { printLine(); counter = 0;} else { return; }
+			}
+		}
+	}
+</script>
+
+</html>

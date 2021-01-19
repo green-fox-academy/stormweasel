@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <button>Click me</button>
+
+    <!-- You can work in the html or in a separate js file. Like:
+
+    <script>
+			Create a simple HTML document with one button. If the user clicks the button 
+			it should wait 2 seconds and it should show a text under the button: 
+			2 seconds ellapsed
+    </script>
+
+    OR
+
+    <script src="one-time-clicker.js"></script> -->
+	</body>
+	<script>
+		'use script';
+
+		let button = document.querySelector('button');
+
+		function printLine () {
+			let line = document.createElement('p');
+			line.innerText = '2seconds ellapsed';
+			document.body.appendChild(line);
+		} 
+
+		button.onclick = () => setTimeout(printLine, 2000);
+	</script>
+</html>
