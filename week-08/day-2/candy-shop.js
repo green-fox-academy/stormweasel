@@ -67,7 +67,7 @@ window.onload = () => {
 		clearInterval(candyAdder);
 
 		let restartButton = document.createElement('button');
-		restartButton.innerHTML = ' <a href="#ˇ">Start a new game</a> ';
+		restartButton.innerHTML = 'Start a new game';
 		wrapper.appendChild(restartButton);
 		document.body.appendChild(wrapper);
 		restartButton.onclick = () => { location.reload(); };
