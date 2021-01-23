@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.wrapper {
+			width: 960px;
+			background-color: black;
+			display: grid;
+			grid-template-columns: repeat(7, 1fr);
+			grid-template-rows: repeat(6, 1fr);
+			gap: 5px;
+		}
+
+		.field {
+			height: 100px;
+			background-color: rgb(255, 214, 42);
+		}
+
+		/* .n2, .n3, .n4, .n5, .n6 {
+			box-shadow: ;
+		} */
+
+		.start p {
+			font-size: 40px;
+			transform: rotate(-40deg);
+			position: relative;
+			bottom: 36px;
+			left: 24px;
+		}
+
+		.pub p{
+			font-size: 40px;
+			transform: rotate(-40deg);
+			position: relative;
+			bottom: 36px;
+			left: 24px;
+		}
+
+		.center {
+			background-color: rgb(81, 212, 0);
+			box-shadow: inset 2px 2px 10px black;
+			grid-column: 2/7;
+			grid-row: 2/6;
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: repeat(4, 1fr);
+		}
+
+		.cards {
+			font-size: 28px;
+			font-weight: bold;
+			text-align: center;
+			padding: 25%;
+			color: white;
+			background-color: rgb(176, 42, 255);
+			grid-column: 4/7;
+			grid-row: 2/4;
+			margin-right: 15px;
+		}
+	</style>
+	<title>Board game GRID</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="field start">
+			<p> Start</p>
+		</div>
+		<div class="field n1"></div>
+		<div class="field n2"></div>
+		<div class="field n3"></div>
+		<div class="field n4"></div>
+		<div class="field n5"></div>
+		<div class="field n6"></div>
+		<div class="field n7"></div>
+		<div class="center">
+			<div class="cards">CARDS</div>
+		</div>
+		<div class="field 8"></div>
+		<div class="field 9"></div>
+		<div class="field 10"></div>
+		<div class="field 11"></div>
+		<div class="field 12"></div>
+		<div class="field 13"></div>
+		<div class="field 14"></div>
+		<div class="field 15"></div>
+		<div class="field 16"></div>
+		<div class="field 17"></div>
+		<div class="field 18"></div>
+		<div class="field 19"></div>
+		<div class="field 20"></div>
+		<div class="field pub">
+			<p>Pub</p>
+		</div>
+	</div>
+
+</body>
+
+</html>
