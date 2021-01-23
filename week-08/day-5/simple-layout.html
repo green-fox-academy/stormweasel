@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.container{
+			width: 960px;
+			display: grid;
+			margin: auto;
+			grid-template-columns: repeat(20, 1fr);
+			grid-template-rows: repeat(8, 1fr);
+			gap: 10px;
+	}
+
+		.navigation {
+			height: 80px;
+			background-color: rgb(176, 42, 255);
+			grid-row: 1/2;
+			grid-column: 1/21;
+			display: grid;
+			grid-template-columns: repeat(20, 1fr);;
+			column-gap: 10px;
+			align-items: center;
+		}
+
+		.link{
+			background-color: cyan;
+			height: 30px;
+		}
+
+		.first {
+			grid-column: 2/4;
+		}
+
+		.second {
+			grid-column: 4/7;
+		}
+
+		.third{
+			grid-column: 7/9;
+		}
+
+		.fourth {
+			grid-column: 9/11;
+		}
+
+		.sidebar {
+			background-color:  rgb(81, 212, 0);
+			grid-column: 2/8;
+			grid-row: 2/7;
+		}
+
+		.main{
+			background-color:  rgb(255, 214, 42);
+			grid-column: 8/20;
+			grid-row: 2/7;
+		}
+
+		.footer{
+			background-color: lightgray;
+			grid-column: 2/20;
+			grid-row: 7;
+		}
+	</style>
+	<title>Simple layout GRID</title>
+</head>
+<body>
+	<div class="container">
+		<div class="navigation">
+			<span class="navigation link first"></span>
+			<span class="navigation link second"></span>
+			<span class="navigation link third"></span>
+			<span class="navigation link fourth"></span>
+		</div>
+		<div class="sidebar"></div>
+		<div class="main content"></div>
+		<div class="footer"></div>
+
+	</div>
+</body>
+</html>

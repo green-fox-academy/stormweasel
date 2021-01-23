@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.container{
+			width: 960px;
+			display: grid;
+			margin: auto;
+			grid-template-columns: repeat(18, 1fr);
+			grid-template-rows: repeat(8, 1fr);
+			gap: 10px;
+	}
+
+		.navigation {
+			height: 80px;
+			background-color: rgb(176, 42, 255);
+			grid-row: 1/2;
+			grid-column: 1/21;
+			display: grid;
+			grid-template-columns: repeat(18, 1fr);;
+			column-gap: 10px;
+			align-items: center;
+		}
+
+		.link{
+			background-color: cyan;
+			height: 30px;
+		}
+
+		.first {
+			grid-column: 2/4;
+		}
+
+		.second {
+			grid-column: 4/7;
+		}
+
+		.third{
+			grid-column: 7/9;
+		}
+
+		.fourth {
+			grid-column: 9/11;
+		}
+
+		.article, .column {
+			background-color:  rgb(81, 212, 0);
+		}
+
+		.left {
+			grid-column: 2/10;
+			grid-row: 2/5;
+		}
+
+		.right {
+			grid-column: 10/18;
+			grid-row: 2/5;
+
+		}
+
+		.down {
+			grid-column: 2/10;
+			grid-row: 5/8;
+
+		}
+
+		.column {
+			grid-row: 5/8;
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: repeat(10, 1fr);
+		}
+		.inner{
+			grid-column: 10/14;
+		}
+		.outer {
+			grid-column: 14/18;
+		}
+			
+		.picture {
+			background-color: red;
+			grid-column: 2/6;
+			grid-row: 3/9;
+		}
+
+		.footer{
+			height: 80px;
+			background-color: lightgray;
+			grid-column: 2/18;
+			grid-row: 8;
+		}
+	</style>
+	<title>Advanced layout GRID</title>
+</head>
+<body>
+	<div class="container">
+		<div class="navigation">
+			<span class="navigation link first"></span>
+			<span class="navigation link second"></span>
+			<span class="navigation link third"></span>
+			<span class="navigation link fourth"></span>
+		</div>
+		<div class="article up left">
+			<h3>Lorem ipsum dolor sit.</h3>
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+				Quam molestiae dicta nulla neque saepe libero consequuntur 
+				explicabo ea quasi illo harum molestias incidunt quia, as-
+				periores, quibusdam nisi id fugiat placeat facere. Magni 
+				consectetur ullam sint commodi saepe facilis dolor dolores 
+				explicabo. Eveniet fuga sequi voluptatum dignissimos vel 
+				aliquid tempore, eius cumque, voluptatem nostrum animi. 
+				Voluptate accusantium praesentium ipsum corporis tempore?
+				Quam molestiae dicta nulla neque saepe libero consequuntur 
+				explicabo ea quasi illo harum molestias incidunt quia, as-
+				periores, quibusdam nisi id fugiat placeat facere. In nomine
+				 patris et fili et spiritus sancti.	</p>
+
+		</div>
+		<div class="article up right">
+			<h3>Lorem ipsum dolor sit.</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+				Qui voluptatum animi quidem. Tempore, molestias reprehen-
+				derit hic saepe nemo, mollitia adipisci aliquid totam cum, 
+				debitis expedita. Velit nemo consequatur quo inventore mol-
+				litia, a et suscipit nisi. Aliquam pariatur temporibus qua-
+				si beatae.</p>
+
+		</div>
+		<div class="article down">
+			<h3>Lorem ipsum dolor sit.</h3>
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+				Quam molestiae dicta nulla neque saepe libero consequuntur 
+				explicabo ea quasi illo harum molestias incidunt quia, as-
+				periores, quibusdam nisi id fugiat placeat facere. Magni 
+				consectetur ullam sint commodi saepe facilis dolor dolores 
+				explicabo. Eveniet fuga sequi voluptatum dignissimos vel 
+				aliquid tempore, eius cumque, voluptatem nostrum animi. 
+				Voluptate accusantium praesentium ipsum corporis tempore?
+				Quam molestiae dicta nulla neque saepe libero consequuntur 
+				explicabo ea quasi illo harum molestias incidunt quia, as-
+				periores, quibusdam nisi id fugiat placeat facere.In nomine 
+				patris et fili.</p>
+
+		</div>
+		<div class="column inner">
+			<div class="picture"></div>
+		</div>
+		<div class="column outer">
+			<div class="picture"></div>
+		</div>
+		<div class="footer"></div>
+
+	</div>
+</body>
+</html>
