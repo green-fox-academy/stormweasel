@@ -4,24 +4,57 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style></style>
+	<style>
+		#result {
+			display: grid;
+			grid-template: 2 1fr/10 1fr;
+		}
+	
+		.people {
+			left: 0px;
+			top: 30px;
+			grid-area: 1/1/1/1;
+		}
+
+		.movies {
+			top: 30px;
+			left: 300px;
+			grid-area: 1/2/1/2;
+		}
+
+		#films {
+			top: 300px;
+			grid-area: 2/1/2/1;
+			justify-self: start;
+		}
+
+		.restart {
+			grid-area: 2/1/2/1;
+			justify-self: end;
+		}
+	</style>
 	<title>Star Wars API</title>
 </head>
 
 <body>
+
 	<div id="searcher">
 		<label>Enter character name
 			<input type="text" name="search">
 		</label>
 		<button type="submit">search</button>
 	</div>
-	
-	<ul class="list people">Character</ul>
 
-	<button id="films">Get movies</button>
+	<p id="warning-field"></p>
 
-	<ul class="list movies">Movie list</ul>
+	<div id="result">
+		<ul class="list people">Character</ul>
+		<div id="buttons">
+			<button id="films" disabled>Get movies</button> 
+		</div>
+		<ul class="list movies">Movie list</ul>
 
+	</div>
 </body>
 <script src="starwars.js"></script>
 
