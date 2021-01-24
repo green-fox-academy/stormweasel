@@ -14,29 +14,24 @@ window.onload = () => {
 		console.log(result[0].images.downsized.url);
 
 		let container = document.querySelector("#container");
-		let displayer = document.querySelector("#displayer");
+	
+		for (let i = 0; i < 16; i++) {
 
-		
-		let thumbnail = document.createElement('img');
-		thumbnail.src = `${result[0].images.fixed_width_small_still.url}`;
-		let label = document.createElement('label');
-		label.textContent = `${result[0].title}`;
-		container.appendChild(thumbnail);
-		container.appendChild(label);
+			let thumbnail = document.createElement('img');
+			thumbnail.src = `${result[i].images.fixed_width_small_still.url}`;
+			let label = document.createElement('label');
+			label.textContent = `${result[i].title}`;
+			container.appendChild(thumbnail);
+			container.appendChild(label);
 
-		thumbnail.addEventListener("click", gifDisplayer);
+			thumbnail.addEventListener("click", gifDisplayer);
 
-		function gifDisplayer() {
-			let image = document.querySelector('#displayer img');
-			image.src = `${result[0].images.original.url}`;
-			console.log(image);
+			function gifDisplayer() {
+				let image = document.querySelector('#displayer img');
+				image.src = `${result[i].images.original.url}`;
+				image.alt = `${result[i].title}`;
+				console.log(image);
+			}
 		}
-
 	}
-
-
-
-
-
-
 }
