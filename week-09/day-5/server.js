@@ -63,20 +63,28 @@ app.post('/add', (req, res) => {
     req.body.latitude, req.body.age, req.body.duration
   ];
 
-  conn.query(command, values, (err, rows) => {
-    if (err) {
-      console.log(err.toString());
-      res.status(500).json({ 'error': 'INTERNAL SERVER ERROR' });
-      return;
-    }
-    console.log(rows);
-    let response = { 'status': 'ok', 'id': `${rows.insertId}` }
-    res.status(200).json(response);
-  });
+  if (!req.body.name || !req.body.city || !req.body.category ||
+    !req.body.price || !req.body.longitude ||
+    !req.body.latitude || !req.body.age || !req.body.duration) {
+    res.status(400).json({ 'error': 'missing content' });
+  } else {
+
+    conn.query(command, values, (err, rows) => {
+      if (err) {
+        console.log(err.toString());
+        res.status(500).json({ 'error': 'INTERNAL SERVER ERROR' });
+        return;
+      }
+      console.log(rows);
+      let response = { 'status': 'ok', 'id': `${rows.insertId}` }
+      res.status(200).json(response);
+    });
+  
+  }
 });
 
 app.put('/edit', (req, res) => {
- 
+
   let command = `UPDATE attractions\
    SET attr_name =?, city =?, category =?, price =?, longitude =?, 
    latitude =?, recommended_age =?, duration =?\
@@ -89,16 +97,24 @@ app.put('/edit', (req, res) => {
     req.body.id
   ];
 
-  conn.query(command, values, (err, rows) => {
-    if (err) {
-      console.log(err.toString());
-      res.status(500).json({ 'error': 'INTERNAL SERVER ERROR' });
-      return;
-    }
-    console.log(rows);
-    let response = { 'status': 'ok', 'id': `${rows.insertId}` }
-    res.status(200).json(response);
-  });
+  if (!req.body.name || !req.body.city || !req.body.category ||
+    !req.body.price || !req.body.longitude || !req.body.id ||
+    !req.body.latitude || !req.body.age || !req.body.duration) {
+    res.status(400).json({ 'error': 'missing content' });
+  } else {
+
+    conn.query(command, values, (err, rows) => {
+      if (err) {
+        console.log(err.toString());
+        res.status(500).json({ 'error': 'INTERNAL SERVER ERROR' });
+        return;
+      }
+      console.log(rows);
+      let response = { 'status': 'ok', 'id': `${rows.insertId}` }
+      res.status(200).json(response);
+    });
+
+  }
 });
 
 app.listen(3000);
