@@ -1,0 +1,16 @@
+body {
+  background-color: gray;
+}
+
+table{
+  background-color: whitesmoke;
+}
+
+td {
+  text-align: center;
+  border: 1px solid black;
+}
+
+form{ 
+  background-color: teal;
+}
